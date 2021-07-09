@@ -1,0 +1,602 @@
+fileFormatVersion: 2
+guid: cc68e934698b09a43a4f9ceed75b7d6a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -2071909213660570381
+    second: DandyItemSprites_0
+  - first:
+      213: 1815052238666184702
+    second: DandyItemSprites_1
+  - first:
+      213: 4223021374118280759
+    second: DandyItemSprites_2
+  - first:
+      213: -7736608849203533628
+    second: DandyItemSprites_3
+  - first:
+      213: 112145671921638067
+    second: DandyItemSprites_4
+  - first:
+      213: 5592285926829626666
+    second: DandyItemSprites_5
+  - first:
+      213: 2057781515506821229
+    second: DandyItemSprites_6
+  - first:
+      213: -9108322493824895606
+    second: DandyItemSprites_7
+  - first:
+      213: 3842084206748662584
+    second: DandyItemSprites_8
+  - first:
+      213: 8734712507375267499
+    second: DandyItemSprites_9
+  - first:
+      213: -8118433516059978341
+    second: DandyItemSprites_10
+  - first:
+      213: -4510423055104601145
+    second: DandyItemSprites_11
+  - first:
+      213: 4795159762571711015
+    second: DandyItemSprites_12
+  - first:
+      213: -6811802595399107895
+    second: DandyItemSprites_13
+  - first:
+      213: 2135091967882486397
+    second: DandyItemSprites_14
+  - first:
+      213: 679279995302577156
+    second: DandyObjectSprites_0
+  - first:
+      213: 7118764332971166703
+    second: DandyObjectSprites_1
+  - first:
+      213: 606626418561355641
+    second: DandyObjectSprites_2
+  - first:
+      213: -1801798141934417788
+    second: DandyObjectSprites_3
+  - first:
+      213: 1174349151654094850
+    second: DandyObjectSprites_4
+  - first:
+      213: -1300604770761266237
+    second: DandyObjectSprites_5
+  - first:
+      213: -1330215410991234910
+    second: DandyObjectSprites_6
+  - first:
+      213: -6840453196394321044
+    second: DandyObjectSprites_7
+  - first:
+      213: -4745970742660704508
+    second: DandyObjectSprites_8
+  - first:
+      213: 4416538764217169955
+    second: DandyObjectSprites_9
+  - first:
+      213: 4821806699023965177
+    second: DandyObjectSprites_10
+  - first:
+      213: 1170133309704542677
+    second: DandyObjectSprites_0
+  - first:
+      213: 4594201689539325118
+    second: DandyObjectSprites_1
+  - first:
+      213: 748109310754510185
+    second: DandyObjectSprites_2
+  - first:
+      213: -5605821417857118909
+    second: DandyObjectSprites_3
+  - first:
+      213: 3527930702529086191
+    second: DandyObjectSprites_4
+  - first:
+      213: 1453411930602403635
+    second: DandyObjectSprites_5
+  - first:
+      213: 1000820310815640666
+    second: DandyObjectSprites_6
+  - first:
+      213: -7474865195143899995
+    second: DandyObjectSprites_7
+  - first:
+      213: 108749706114133807
+    second: DandyObjectSprites_8
+  - first:
+      213: -1064591093243197989
+    second: DandyObjectSprites_9
+  - first:
+      213: -1803103186640830047
+    second: DandyObjectSprites_10
+  - first:
+      213: -6620397005707266265
+    second: DandyObjectSprites_11
+  - first:
+      213: -2433982847200345370
+    second: DandyObjectSprites_12
+  - first:
+      213: 7715341523024018027
+    second: DandyObjectSprites_13
+  - first:
+      213: 7251503260035293398
+    second: DandyObjectSprites_14
+  - first:
+      213: -7125965423087723974
+    second: DandyObjectSprites_15
+  - first:
+      213: 7001791758908001063
+    second: DandyObjectSprites_16
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 128
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: DandyObjectSprites_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5d99ac8ab062d3010800000000000000
+      internalID: 1170133309704542677
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_1
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ebcad737812e1cf30800000000000000
+      internalID: 4594201689539325118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_2
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9655fa85471d16a00800000000000000
+      internalID: 748109310754510185
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_3
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 34d89521f1f1432b0800000000000000
+      internalID: -5605821417857118909
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_4
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 384
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fe2c07c384ab5f030800000000000000
+      internalID: 3527930702529086191
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 337fedb437e8b2410800000000000000
+      internalID: 1453411930602403635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_6
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5c892625c0a3ed00800000000000000
+      internalID: 1000820310815640666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_7
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a4548365b1f34890800000000000000
+      internalID: -7474865195143899995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_8
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f2f6c52184b528100800000000000000
+      internalID: 108749706114133807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_9
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 256
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd5c1388a00d931f0800000000000000
+      internalID: -1064591093243197989
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_10
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1a106ea74371af6e0800000000000000
+      internalID: -1803103186640830047
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_11
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72732caefff9f14a0800000000000000
+      internalID: -6620397005707266265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_12
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e2ca3b0f71c83ed0800000000000000
+      internalID: -2433982847200345370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_13
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6afaa0dc36621b60800000000000000
+      internalID: 7715341523024018027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_14
+      rect:
+        serializedVersion: 2
+        x: 512
+        y: 128
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d0adfd7bc382a460800000000000000
+      internalID: 7251503260035293398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_15
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3ad323e33c7b1d90800000000000000
+      internalID: -7125965423087723974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_16
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72b08f4f18c5b2160800000000000000
+      internalID: 7001791758908001063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
