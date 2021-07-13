@@ -1,14 +1,8 @@
-**DandeLion**
+**Inhabited**
 
-A Unity based interperetation of the 8-bit Atari game Dandy.
-
-https://en.wikipedia.org/wiki/Dandy_(video_game)
-
-The main point of difference is that this version implements online multiplayer.
+Top down tile based scifi dungeon crawler implemented with Unity.
 
 To host the game you must set up port forwarding on your modem. The game currently uses port 10515.
-
-The game is based on the NetGameExample from the RevenantX/LiteNetLib repository.
 
 **Simplified Architecture**
 

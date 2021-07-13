@@ -195,7 +195,7 @@ namespace GameEngine
 
                     JumpToMap(_map);
 
-                    var level = _levelSet.GetCurrentLevel();
+                /*    var level = _levelSet.GetCurrentLevel();
                     var chestLocation = level.GetSpawnPoint() + new Vector2(5f, 5f);
 
                     // throw a chest into the map for testing
@@ -203,7 +203,7 @@ namespace GameEngine
                     chest.AddItem(PlayerBagItem.Bomb, 1);
                     chest.AddItem(PlayerBagItem.Health, 1);
                     chest.AddItem(PlayerBagItem.KeyRed, 1);
-                    _objectManager.AddWorldObject(chest);
+                    _objectManager.AddWorldObject(chest);*/
                 }
 
                 // send object updates if any
@@ -596,12 +596,6 @@ namespace GameEngine
                                                     new WorldVector(x + objectMapArray.xOffset + 0.5f, y + objectMapArray.yOffset + 0.5f),
                                                     width, isHorizontal);
 
-                 /*   if ((x+objectMapArray.xOffset>-2 && x+objectMapArray.xOffset < 2) ||
-                        (y+objectMapArray.yOffset>-2 && y+objectMapArray.yOffset < 2))
-                    {
-                        Debug.Log($"[S] Object processed at:'{x+objectMapArray.xOffset+0.5f}','{y + objectMapArray.yOffset + 0.5f}' - created:'{worldObject!=null}'");
-                    }*/
-
                     if (worldObject != null)
                     {
                         if(!_objectManager.AddWorldObject(worldObject))
@@ -611,20 +605,6 @@ namespace GameEngine
                     }
 
                 }
-
-            // for debugging:
-            // create chest object next to spawn location
-       /*     var chestPosition = currentLevel.GetSpawnPoint()+new Vector2(2.0f, 2.0f);
-            Chest chestObject = (Chest)_objectManager.CreateWorldObject(ObjectType.Chest, new WorldVector(chestPosition.x, chestPosition.y));
-            if (chestObject != null)
-            {
-                chestObject.AddItem(PlayerBagItem.Health);
-                chestObject.AddItem(PlayerBagItem.Bomb);
-                chestObject.AddItem(PlayerBagItem.KeyBlue);
-                chestObject.AddItem(PlayerBagItem.KeyGreen);
-                chestObject.AddItem(PlayerBagItem.Health);
-                _objectManager.AddWorldObject(chestObject);
-            }*/
         }
 
 
