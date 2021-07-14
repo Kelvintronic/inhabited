@@ -9,7 +9,6 @@ public class OptionsMenu : MonoBehaviour
     [Header("Input Objects")]
     [SerializeField] private Button _1Button;
     [SerializeField] private Button _2Button;
-    [SerializeField] private Toggle _destroyKeyToggle;
     [SerializeField] private Toggle _oldKeysToggle;
     [SerializeField] private Toggle _confineMouseToggle;
     [SerializeField] private Button _backButton;
@@ -28,7 +27,6 @@ public class OptionsMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _destroyKeyToggle.SetIsOnWithoutNotify(_serverLogic.IsDestroyKeyOnUse);
         _oldKeysToggle.SetIsOnWithoutNotify(_clientLogic.IsOldKeys);
         _confineMouseToggle.SetIsOnWithoutNotify(_uiController.ConfineMouse);
     }
@@ -56,11 +54,6 @@ public class OptionsMenu : MonoBehaviour
     }
     public void On2Button()
     {
-    }
-
-    public void OnDestroyKeyToggle()
-    {
-        _serverLogic.IsDestroyKeyOnUse = !_serverLogic.IsDestroyKeyOnUse;
     }
 
     public void OnOldKeysToggle()

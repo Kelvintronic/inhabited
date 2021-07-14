@@ -205,7 +205,7 @@ namespace GameEngine
             _netManager.Stop();
         }
 
-        public void OnNewMap(NewMapPacket newMap)
+        public void OnNewMap(MapPacket newMap)
         {
             Debug.Log("[C] Received NewMapPacket");
 
@@ -505,7 +505,7 @@ namespace GameEngine
                     OnServerState();
                     break;
                 case PacketType.NewMap:
-                    NewMapPacket newMap = new NewMapPacket();
+                    MapPacket newMap = new MapPacket();
                     newMap.Deserialize(reader);
                     OnNewMap(newMap);
                     break;

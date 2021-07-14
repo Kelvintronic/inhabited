@@ -286,7 +286,7 @@ namespace GameEngine
     }*/
 
 
-    public struct NewMapPacket : INetSerializable
+    public struct MapPacket : INetSerializable
     {
 
         public ushort nMap;

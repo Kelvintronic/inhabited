@@ -21,7 +21,7 @@ namespace GameEngine
         public Queue<int> PendingUpdates => _updates;
 
         // Transmission interface and packet
-        private INetServer _netSender;
+        private INetSender _netSender;
         private WorldObjectState _worldObjectState;
 
         // world info needed by objects for AI
@@ -42,7 +42,7 @@ namespace GameEngine
         // items that are classed interactable are referenced in this instead of _mapArray
         private Dictionary<VectorInt, int> _interactables;
 
-        public ServerObjectManager(INetServer netSender, IEnumerable<BasePlayer> playerList)
+        public ServerObjectManager(INetSender netSender, IEnumerable<BasePlayer> playerList)
         {
             _netSender = netSender;
             _playerList = playerList;

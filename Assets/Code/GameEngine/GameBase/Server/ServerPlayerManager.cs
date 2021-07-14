@@ -12,8 +12,8 @@ namespace GameEngine
         public override int Count => _playersCount;
         public int nPlayerSlots => MaxPlayers;
 
-        private INetServer _netSender;
-        public ServerPlayerManager(INetServer netSender)
+        private INetSender _netSender;
+        public ServerPlayerManager(INetSender netSender)
         {
             _netSender = netSender;
             _players = new ServerPlayer[MaxPlayers];
