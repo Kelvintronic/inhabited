@@ -55,25 +55,9 @@ namespace GameEngine
             Destroy(gameObject);
         }
 
-        /*    public void SpawnShot(WorldVector direction)
-            {
-                Debug.Log($"[C] Remote Player Shot Spawn: {_player.Name}");
-
-                var shotSpawnRot = _arrow.transform.rotation * Quaternion.Euler(0, 0, -90);
-                var shotSpawnPos = _arrow.transform.position + (shotSpawnRot * Vector3.up);
-
-                var shot = Instantiate(_projectilePrefab, shotSpawnPos, shotSpawnRot);
-
-                var shotOwner = shot.GetComponent<PlayerOwned>();
-                shotOwner.PlayerId = _player.Id;
-                shotOwner.PlayerName = _player.Name;
-                shotOwner.IsRemote = true;
-
-            }*/
-
         public GameObject Shoot(bool isServer)
         {
-            var shotSpawnRot = _arrow.transform.rotation * Quaternion.Euler(0, 0, -90);
+            var shotSpawnRot = _arrow.transform.rotation; 
             var shotSpawnPos = _arrow.transform.position + (shotSpawnRot * Vector3.up);
 
             GetComponent<AudioSource>().Play();

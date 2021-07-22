@@ -155,7 +155,7 @@ namespace GameEngine
             _target.transform.position = _targetPosition + (Vector2)transform.position;
 
             // work out player direction and set arrow accordingly
-            _rotation = Mathf.Atan2(_targetPosition.y, _targetPosition.x);
+            _rotation = Mathf.Atan2(_targetPosition.y, _targetPosition.x) - 90 * Mathf.Deg2Rad;
             _arrow.transform.rotation = Quaternion.Euler(0f, 0f, _rotation * Mathf.Rad2Deg);
 
             // activate key
@@ -185,7 +185,7 @@ namespace GameEngine
         void FixedUpdate()
         {
             // calculate rotation vector of forward motion
-            _lookDirection = new Vector2(MathFloat.Cos(_rotation), MathFloat.Sin(_rotation));
+            _lookDirection = _targetPosition.normalized;
 
             Vector2 up = new Vector2(0, -1);
             Vector2 down = new Vector2(0, 1);
@@ -205,10 +205,10 @@ namespace GameEngine
                 up = new Vector2(0 - _lookDirection.x, 0 - _lookDirection.y);
 
                 // calculate rotation vector of left motion
-                left = new Vector2(MathFloat.Cos(_rotation + MathFloat.Deg2Rad * 90), MathFloat.Sin(_rotation + MathFloat.Deg2Rad * 90));
+                right = new Vector2(MathFloat.Cos(_rotation), MathFloat.Sin(_rotation));
 
                 // calculate rotation vector of reverse motion
-                right = new Vector2(0 - left.x, 0 - left.y);
+                left = new Vector2(0 - right.x, 0 - right.y);
             }
 
 
@@ -242,7 +242,7 @@ namespace GameEngine
 
         public GameObject Shoot(bool isServer)
         {
-            var shotSpawnRot = _arrow.transform.rotation * Quaternion.Euler(0, 0, -90);
+            var shotSpawnRot = _arrow.transform.rotation;
             var shotSpawnPos = _arrow.transform.position + (shotSpawnRot * Vector3.up);
 
             GetComponent<AudioSource>().Play();
