@@ -18,18 +18,18 @@ namespace GameEngine
             NetworkState.SetBag(_bag);
         }
 
-        public override void ApplyInput(PlayerInputPacket command, float delta)
+        public void ApplyInput(PlayerInputPacket command, float delta)
         {
             // if we have recieved a packet command that comes before the last packet
             // processed do nothing
             if (NetworkGeneral.SeqDiff(command.Id, LastProcessedCommandId) <= 0)
                 return;
+
+            _position = command.Position;
+            _rotation = command.Rotation;
+
             LastProcessedCommandId = command.Id;
 
-            _position = command.Position;   // added by KJP
-            _rotation = command.Rotation;   // added by KJP
-
-            base.ApplyInput(command, delta);
         }
 
         public override void Update(float delta)
@@ -43,8 +43,7 @@ namespace GameEngine
             NetworkState.Cash = _cash;
             NetworkState.Active = _active;
             NetworkState.Tick = LastProcessedCommandId;
-            NetworkState.SetBag(_bag);
-            
+            NetworkState.SetBag(_bag);            
         }
 
         public override void SetActive(bool active)

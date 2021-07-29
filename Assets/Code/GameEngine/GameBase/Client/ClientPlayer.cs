@@ -9,6 +9,7 @@ namespace GameEngine
         private readonly LiteRingBuffer<PlayerInputPacket> _predictionPlayerStates;
         private ServerState _lastServerState;
         private const int MaxStoredCommands = 60;
+        private PlayerInputPacket _nextCommand;
         private bool _firstStateReceived;
         private int _updateCount;
 
@@ -21,6 +22,15 @@ namespace GameEngine
         public WorldVector _actualPosition;
         public WorldVector LastPosition { get; private set; }
         public float LastRotation { get; private set; }
+
+        private bool _serverCorrection = false;
+        public bool isServerCorrected => _serverCorrection;
+        public void AcceptCorrection()
+        {
+            _serverCorrection = false;
+            _nextCommand.CorrectionAccepted = true;
+        }
+
 
         public int StoredCommands => _predictionPlayerStates.Count;
 
@@ -35,6 +45,12 @@ namespace GameEngine
             _clientLogic = clientLogic;
         }
 
+        /// <summary>
+        /// Apply server player state to player object
+        /// </summary>
+        /// <param name="serverState"></param>
+        /// <param name="ourState"></param>
+        /// <returns></returns>
         public void ReceiveServerState(ServerState serverState, PlayerState ourState)
         {
             if (!_firstStateReceived)
@@ -57,12 +73,12 @@ namespace GameEngine
             _score = ourState.Score;
             _cash = ourState.Cash;
 
-            // these are not acted on any more just used as old states for lerping if needed
+            // provide the position for correction
             _position = ourState.Position;
             _rotation = ourState.Rotation;
 
             // if we have died clear input packet
-            if(!IsAlive)
+            if (!IsAlive)
                 SetInput(WorldVector.Zero, 0.0f, false);
 
             // if we have left the level this will be false
@@ -71,7 +87,6 @@ namespace GameEngine
             _bag.Clear();
             foreach(var slot in ourState.Bag)
                _bag.Add(slot);
-
         }
 
         public override void Spawn(float x, float y)
@@ -117,7 +132,7 @@ namespace GameEngine
         }
 
         public void SetCommandPosition(WorldVector position)
-        {
+        { 
             _nextCommand.Position = position;
         }
 
@@ -136,6 +151,9 @@ namespace GameEngine
 
             // send movement packet
             _clientLogic.SendPacketSerializable(PacketType.Movement, _nextCommand, DeliveryMethod.Unreliable);
+
+            if (_nextCommand.CorrectionAccepted)
+                _nextCommand.CorrectionAccepted = false;
 
             if (_hasSetActivate)
             {

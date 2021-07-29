@@ -95,6 +95,13 @@ namespace GameEngine
         public float y { get; set; }
     }
 
+    public class PlayerPositionCorrection
+    {
+        public float x { get; set; }
+        public float y { get; set; }
+
+    }
+
     //Manual serializable packets
 
     [Flags]
@@ -137,6 +144,7 @@ namespace GameEngine
         public MovementKeys Keys;
         public WorldVector Position;
         public float Rotation;
+        public bool CorrectionAccepted;
         public ushort ServerTick;
 
         public void Serialize(NetDataWriter writer)
@@ -145,6 +153,7 @@ namespace GameEngine
             writer.Put((byte)Keys);
             writer.Put(Position);
             writer.Put(Rotation);
+            writer.Put(CorrectionAccepted);
             writer.Put(ServerTick);
         }
 
@@ -154,6 +163,7 @@ namespace GameEngine
             Keys = (MovementKeys)reader.GetByte();
             Position = reader.GetWorldVector();
             Rotation = reader.GetFloat();
+            CorrectionAccepted = reader.GetBool();
             ServerTick = reader.GetUShort();
         }
     }
@@ -227,6 +237,9 @@ namespace GameEngine
             }
         }
     }
+
+
+    
 
     // Added by Kelvin 20210211
     // Updated 20210325

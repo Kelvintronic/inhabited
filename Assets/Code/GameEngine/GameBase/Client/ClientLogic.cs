@@ -94,6 +94,10 @@ namespace GameEngine
             _packetProcessor.SubscribeReusable<RemoveObjectPacket>(OnRemoveObject);
             _packetProcessor.SubscribeReusable<ActivateObjectPacket>(OnActivateObject);
             _packetProcessor.SubscribeReusable<ReleaseObjectLockPacket>(OnObjectUnlockPacket);
+            _packetProcessor.SubscribeReusable<PlayerPositionCorrection>(OnPlayerPositionCorrection);
+
+
+            
             _netManager = new NetManager(this)
             {
                 AutoRecycle = true,
@@ -269,6 +273,14 @@ namespace GameEngine
             var packet = new ReleaseObjectLockPacket() { objectId = e.objetId };
             SendPacket(packet, DeliveryMethod.ReliableOrdered);
         }
+
+        public void OnPlayerPositionCorrection(PlayerPositionCorrection packet)
+        {
+            Debug.Log("[C] Received Position Correction");
+
+            _ourPlayerView.SetPositionCorrection(new Vector2(packet.x, packet.y));
+        }
+
         private void OnInventorySelect(object sender, InventorySelectArg e)
         {
             var packet = new ActivateBagItemPacket() { slot = e.slot, drop = e.drop };

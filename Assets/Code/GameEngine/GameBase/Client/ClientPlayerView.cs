@@ -13,13 +13,13 @@ namespace GameEngine
         [SerializeField] private GameObject _fogOfWarCircle;
         private const int _distanceOfSight = 6;
         private const int _targetSpeed = 2;
-        
 
         private Vector2 _targetPosition;
 
         private ClientLogic _clientLogic;
 
         private Vector2 _velocity;
+        private Vector2 _serverVelocity;
         private float _rotation;
         private Vector2 _lookDirection;
         private bool _fire;
@@ -174,7 +174,7 @@ namespace GameEngine
                 }
             }
 
-            // Form command packet ready to send
+            // Form command packet from _velocity given by InputSystem notification
             _command = _player.SetInput(new WorldVector(_velocity.x, _velocity.y), _rotation, _fire);
 
             // update player position in command
@@ -211,7 +211,7 @@ namespace GameEngine
                 left = new Vector2(0 - right.x, 0 - right.y);
             }
 
-
+            // act on command set in Update()
             if ((_command.Keys & MovementKeys.Up) != 0)
                 actualVelocity = up;
             if ((_command.Keys & MovementKeys.Down) != 0)
@@ -222,7 +222,15 @@ namespace GameEngine
                 actualVelocity += right;
 
             actualVelocity.Normalize();
-            Vector2 newPosition = (Vector2)transform.position + (actualVelocity * _player.Speed * Time.deltaTime);
+
+            Vector2 newPosition;
+
+            // calculate new position
+            newPosition = (Vector2)transform.position + (actualVelocity * _player.Speed * Time.deltaTime) + _serverVelocity;
+
+            // if a server velocity has been applied, zero out the value
+            if (_serverVelocity.x != 0f || _serverVelocity.y != 0)
+                _serverVelocity = Vector2.zero;
 
             // stop ridgid body moving
             // without these lines the player will keep moving when pushed by a monster
@@ -230,7 +238,7 @@ namespace GameEngine
             _rigidbody2d.Sleep();
             _rigidbody2d.WakeUp();
 
-            // Set ridgidbody
+            // Set ridgidbody (apply physical position)
             _rigidbody2d.transform.position = newPosition;
 
         }
@@ -240,6 +248,10 @@ namespace GameEngine
             Destroy(gameObject);
         }
 
+        public void SetPositionCorrection(Vector2 delta)
+        {
+            _serverVelocity = delta;
+        }
         public GameObject Shoot(bool isServer)
         {
             var shotSpawnRot = _arrow.transform.rotation;
@@ -252,11 +264,6 @@ namespace GameEngine
             else
                 return Instantiate(_clientProjectilePrefab, shotSpawnPos, shotSpawnRot);
 
-        }
-
-        void IPlayerView.SetActive(bool bActive)
-        {
-            gameObject.SetActive(bActive);
         }
 
         public byte GetId()
@@ -288,5 +295,11 @@ namespace GameEngine
         {
             _fogOfWarCircle.SetActive(!isHidden);
         }
+
+        void IPlayerView.SetActive(bool bActive)
+        {
+            gameObject.SetActive(bActive);
+        }
+
     }
 }

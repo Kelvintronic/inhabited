@@ -138,6 +138,9 @@ namespace GameEngine
 
         /**************************  Main server loop  **************************************/
 
+        // experimental variables
+        int turn = 0;
+
         private void OnLogicUpdate()
         {
             // increment tick and wrap to zero at MaxGameSequence (1024)
@@ -155,6 +158,34 @@ namespace GameEngine
                     foreach (var item in player.Bag)
                         chest.AddItem(item.type, item.count);
                     _objectManager.AddWorldObject(chest);
+                }
+                else
+
+                // experiment to test position correction logic
+                if(player.player==0&&player.IsAlive&&player.IsActive&&_serverTick%4==0)
+                {
+              /*      float deltax=0, deltay=0;
+                    switch(turn)
+                    {
+                        case 0:
+                            deltax++;
+                            break;
+                        case 1:
+                            deltay++;
+                            break;
+                        case 2:
+                            deltax--;
+                            break;
+                        case 3:
+                            deltay--;
+                            break;
+                    }
+                    turn++;
+                    if (turn > 3)
+                        turn = 0;
+
+                    _remoteManager.SendToPeer(player.AssociatedPeer, new PlayerPositionCorrection {x=deltax, y=deltay});
+                    */
                 }
             }
 

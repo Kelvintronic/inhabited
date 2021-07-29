@@ -59,8 +59,6 @@ namespace GameEngine
         public int player;
         public int Ping;
 
-        protected PlayerInputPacket _nextCommand;        // only used by ClientPlayer
-
         protected BasePlayer(string name, byte id)
         {
             Id = id;
@@ -198,11 +196,6 @@ namespace GameEngine
                 return true;
             }
             return false;
-        }
-
-        public virtual void ApplyInput(PlayerInputPacket command, float delta)
-        {
-
         }
 
         public virtual void Update(float delta) 
