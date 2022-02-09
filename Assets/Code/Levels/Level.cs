@@ -314,6 +314,12 @@ namespace GameEngine
                         case "DandyObjectSprites_16": // false wall
                             _objectArray.Array[x, y].type = ObjectType.FalseWall;
                             break;
+                        case "DandyObjectSprites_17": // hidden door
+                            _objectArray.Array[x, y].type = ObjectType.HiddenDoor;
+                            break;
+                        case "DandyObjectSprites_18": // normal door
+                            _objectArray.Array[x, y].type = ObjectType.Door;
+                            break;
 
                         // NPC and Generators
                         case "DandyObjectSprites_10":

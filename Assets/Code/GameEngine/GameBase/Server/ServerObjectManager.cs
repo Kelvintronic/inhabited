@@ -228,7 +228,9 @@ namespace GameEngine
                 case ObjectType.DoorRed:
                 case ObjectType.DoorGreen:
                 case ObjectType.DoorBlue:
-                    newObject = new Door(position, type - ObjectType.DoorRed, width, isHorizontal);
+                case ObjectType.Door:
+                case ObjectType.HiddenDoor:
+                    newObject = new Door(position, type , width, isHorizontal);
                     break;
                 case ObjectType.Health:
                     newObject = new Health(position);

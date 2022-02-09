@@ -5,7 +5,7 @@ using GameEngine;
 
 public class DoorView : MonoBehaviour, IObjectView
 {
-    private SpriteRenderer _renderer;
+    public Sprite[] doorSprites;
     private WorldObject _worldObject;
 
     public static DoorView Create(DoorView prefab, WorldObject worldObject)
@@ -26,37 +26,28 @@ public class DoorView : MonoBehaviour, IObjectView
             _worldObject.SetPosition(new WorldVector(transform.position.x, transform.position.y));
         }
 
-        _renderer = GetComponent<SpriteRenderer>();
+        int spriteIndex = (int)_worldObject.Type - (int)ObjectType.Door;
+
+        SpriteRenderer renderer = GetComponent<SpriteRenderer>();
+
+        renderer.sprite = doorSprites[spriteIndex];
 
         if (_worldObject.Width > 1)
         {
             // set size and adjust position to allow for new width
             if (_worldObject.IsHorizontal)
             {
-                _renderer.size = new Vector2(_worldObject.Width, 1);
+                renderer.size = new Vector2(_worldObject.Width, 1);
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x + (0.5f * _worldObject.Width)-0.5f,
                                                             gameObject.transform.position.y);
             }
             else
             {
-                _renderer.size = new Vector2(1, _worldObject.Width);
+                renderer.size = new Vector2(1, _worldObject.Width);
                 gameObject.transform.position = new Vector2(gameObject.transform.position.x,
                                                             gameObject.transform.position.y + (0.5f * _worldObject.Width)-0.5f);
             }
             
-        }
-
-        switch (_worldObject.Type)
-        {
-            case ObjectType.DoorRed:
-                _renderer.color = new Color(0xFF, 0x00, 0x00);
-                break;
-            case ObjectType.DoorGreen:
-                _renderer.color = new Color(0x00, 0xFF, 0x00);
-                break;
-            case ObjectType.DoorBlue:
-                _renderer.color = new Color(0x00, 0x00, 0xFF);
-                break;
         }
     }
 

@@ -22,9 +22,11 @@
         Gen_level3,
         Cash,
         Heart,
+        Door,
         DoorRed,
         DoorGreen,
         DoorBlue,
+        HiddenDoor,
         Chest,
         FalseWall
     }

@@ -78,6 +78,12 @@ namespace GameEngine
         public bool drop { get; set; }
     }
 
+    public class RevealAreaPacket
+    {
+        public WorldVector position { get; set; }
+        public float direction { get; set; }
+    }
+
     public class RemoveObjectPacket
     {
         public int id { get; set; }

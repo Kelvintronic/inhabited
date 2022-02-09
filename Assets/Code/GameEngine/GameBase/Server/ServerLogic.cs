@@ -299,6 +299,8 @@ namespace GameEngine
                     if (objectMapArray.Array[x, y].type == ObjectType.DoorBlue ||
                         objectMapArray.Array[x, y].type == ObjectType.DoorGreen ||
                         objectMapArray.Array[x, y].type == ObjectType.DoorRed ||
+                        objectMapArray.Array[x, y].type == ObjectType.Door ||
+                        objectMapArray.Array[x, y].type == ObjectType.HiddenDoor ||
                         objectMapArray.Array[x, y].type == ObjectType.FalseWall)
                     {
                         if(objectMapArray.Array[x, y].type==ObjectType.FalseWall)

@@ -95,9 +95,10 @@ namespace GameEngine
             _packetProcessor.SubscribeReusable<ActivateObjectPacket>(OnActivateObject);
             _packetProcessor.SubscribeReusable<ReleaseObjectLockPacket>(OnObjectUnlockPacket);
             _packetProcessor.SubscribeReusable<PlayerPositionCorrection>(OnPlayerPositionCorrection);
+            _packetProcessor.SubscribeReusable<RevealAreaPacket>(OnRevealAreaPacket);
 
 
-            
+
             _netManager = new NetManager(this)
             {
                 AutoRecycle = true,
@@ -258,6 +259,19 @@ namespace GameEngine
             worldObjectView.OnActivate(_ourPlayerView);
         }
 
+        public void OnRevealAreaPacket(RevealAreaPacket packet)
+        {
+            Debug.Log("[C] Received Reveal Area Packet");
+
+            Vector2 direction = new Vector2(Mathf.Cos(packet.direction + 90 * Mathf.Deg2Rad), Mathf.Sin(packet.direction + 90 * Mathf.Deg2Rad));
+            Vector2 position = new Vector2(packet.position.x, packet.position.y);
+
+            RaycastHit2D hit = Physics2D.Raycast(position, direction, 2.0f, LayerMask.GetMask("Mask"));
+            if (hit.collider != null)
+                hit.collider.gameObject.SetActive(false);
+
+        }
+
 
         public void OnObjectUnlockPacket(ReleaseObjectLockPacket packet)
         {
@@ -380,6 +394,8 @@ namespace GameEngine
                         case ObjectType.DoorBlue:
                         case ObjectType.DoorRed:
                         case ObjectType.DoorGreen:
+                        case ObjectType.Door:
+                        case ObjectType.HiddenDoor:
                             view = DoorView.Create(_prefabStore.doorObjectPrefab, _cachedObjectState.worldObjects[i]);
                             break;
                         case ObjectType.KeyBlue:

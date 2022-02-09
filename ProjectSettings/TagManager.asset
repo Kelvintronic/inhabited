@@ -20,7 +20,7 @@ TagManager:
   - 
   - 
   - Player
-  - Grid
+  - Mask
   - Interactables
   - NPC
   - Sensors

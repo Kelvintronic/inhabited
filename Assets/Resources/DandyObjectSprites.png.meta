@@ -131,6 +131,30 @@ TextureImporter:
   - first:
       213: 7001791758908001063
     second: DandyObjectSprites_16
+  - first:
+      213: -6521867422423904515
+    second: DandyObjectSprites_11
+  - first:
+      213: 6483842769706430881
+    second: DandyObjectSprites_12
+  - first:
+      213: -1998845342371562956
+    second: DandyObjectSprites_13
+  - first:
+      213: 432640102242271850
+    second: DandyObjectSprites_14
+  - first:
+      213: 3679098065867003612
+    second: DandyObjectSprites_15
+  - first:
+      213: -1275569189886331029
+    second: DandyObjectSprites_16
+  - first:
+      213: 88288547997835045
+    second: DandyObjectSprites_17
+  - first:
+      213: -2871122059220969290
+    second: DandyObjectSprites_18
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -473,8 +497,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72732caefff9f14a0800000000000000
-      internalID: -6620397005707266265
+      spriteID: dfe0b36322cad75a0800000000000000
+      internalID: -6521867422423904515
       vertices: []
       indices: 
       edges: []
@@ -494,8 +518,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6e2ca3b0f71c83ed0800000000000000
-      internalID: -2433982847200345370
+      spriteID: 1a136db65ac3bf950800000000000000
+      internalID: 6483842769706430881
       vertices: []
       indices: 
       edges: []
@@ -515,8 +539,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b6afaa0dc36621b60800000000000000
-      internalID: 7715341523024018027
+      spriteID: 43abffe50cca244e0800000000000000
+      internalID: -1998845342371562956
       vertices: []
       indices: 
       edges: []
@@ -536,8 +560,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d0adfd7bc382a460800000000000000
-      internalID: 7251503260035293398
+      spriteID: a624db971eb010600800000000000000
+      internalID: 432640102242271850
       vertices: []
       indices: 
       edges: []
@@ -557,8 +581,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a3ad323e33c7b1d90800000000000000
-      internalID: -7125965423087723974
+      spriteID: cd654ddb238ce0330800000000000000
+      internalID: 3679098065867003612
       vertices: []
       indices: 
       edges: []
@@ -578,8 +602,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 72b08f4f18c5b2160800000000000000
-      internalID: 7001791758908001063
+      spriteID: b67746e74944c4ee0800000000000000
+      internalID: -1275569189886331029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_17
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 52f552577f9a93100800000000000000
+      internalID: 88288547997835045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: DandyObjectSprites_18
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 0
+        width: 128
+        height: 128
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b89851f2b9b728d0800000000000000
+      internalID: -2871122059220969290
       vertices: []
       indices: 
       edges: []

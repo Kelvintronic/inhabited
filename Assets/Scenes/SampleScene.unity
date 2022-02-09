@@ -15486,8 +15486,8 @@ MonoBehaviour:
   sourceTiles: {fileID: 35492327}
   _lobby: {fileID: 133083025}
   _levelPrefabs:
-  - {fileID: 8696600995825657408, guid: a60761febe89d23459b772b566e0cacc, type: 3}
-  - {fileID: 5643264287536445586, guid: 466b7325808f98943910194c261041f8, type: 3}
+  - {fileID: 8696600995825657408, guid: f16518d95afe45140af25155af54445a, type: 3}
+  - {fileID: 8696600995825657408, guid: 3133f6027beccbb439ed8a84c6352e41, type: 3}
   _customLevel: {fileID: 588523203}
   mapCamera: {fileID: 1482649979}
 --- !u!4 &1675226027
@@ -16243,7 +16243,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   keyObjectPrefab: {fileID: 7779173421564996346, guid: 5f4c72cec7ab4694facc5dba7c29278e,
     type: 3}
-  doorObjectPrefab: {fileID: -4230104136887547188, guid: dc1ad2971b9779148aaa762f744199f1,
+  doorObjectPrefab: {fileID: 8240993915078237421, guid: 325b1fa5af32eee4581db094339ae317,
     type: 3}
   heartObjectPrefab: {fileID: 4557851241022102775, guid: e03ae177e53a83e4c83aa38c49a7ea91,
     type: 3}

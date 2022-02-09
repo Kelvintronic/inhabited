@@ -175,13 +175,12 @@ namespace GameEngine
                 switch (worldObject.Type)
                 {
                     case ObjectType.DoorBlue:
-                        _objectManager.RemoveObject(activatePacket.objectId);
-                        break;
                     case ObjectType.DoorRed:
-                        _objectManager.RemoveObject(activatePacket.objectId);
-                        break;
                     case ObjectType.DoorGreen:
+                    case ObjectType.Door:
+                    case ObjectType.HiddenDoor:
                         _objectManager.RemoveObject(activatePacket.objectId);
+                        SendToAll(new RevealAreaPacket { direction = player.Rotation, position = player.Position });
                         break;
                     case ObjectType.Chest:
                         if (worldObject.Lock(player))
