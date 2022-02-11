@@ -14,10 +14,8 @@ namespace GameEngine
         private WorldObject _worldObject;
         private bool _isServer;
 
-        public const int Levels = 3; // number of different levels the NPC has
-        public NPCStance stance;
-        [Range(0, Levels - 1)]
-        public byte level;
+        public const int MaxSize = 3; // number of different sizes the Generator has
+        private byte _size;
 
         public int Id { get => _id; }
         public bool IsServer { get => _isServer; }
@@ -31,21 +29,19 @@ namespace GameEngine
         void Start()
         {
             _id = _worldObject.Id;
-            level = (byte)(_worldObject.Type-ObjectType.Gen_level1);
-
-            SetLevel(level);
+            SetLevel(_worldObject.Flags);
         }
 
-        public void SetLevel(byte newLevel)
+        public void SetLevel(byte newSize)
         {
-            if (newLevel < Levels)
+            if (newSize < MaxSize)
             {
-                level = newLevel;
-                for (byte i=0; i<Levels; i++)
+                _size = newSize;
+                for (byte i=0; i<MaxSize; i++)
                 {
-                    _levels[i].SetActive(i == level);
+                    _levels[i].SetActive(i == _size);
                 }
-                _rigidbody2d = _levels[level].GetComponent<Rigidbody2D>();
+                _rigidbody2d = _levels[_size].GetComponent<Rigidbody2D>();
             }
         }
 
@@ -53,7 +49,6 @@ namespace GameEngine
         public static GenView Create(GenView prefab, WorldObject worldObject, bool isServer)
         {
             var gen = Instantiate<GenView>(prefab, new Vector3(worldObject.Position.x, worldObject.Position.y),Quaternion.identity); 
-                                            //, Object.FindObjectOfType<ClientLogic>().levelSet.GetCurrentLevel().transform);
             gen._worldObject = worldObject;
             gen._isServer = isServer;
             return gen;
@@ -68,7 +63,6 @@ namespace GameEngine
         {
             return _id;
         }
-
 
         void IObjectView.OnActivate(IPlayerView playerView)
         {
@@ -90,8 +84,7 @@ namespace GameEngine
             // to update view here.
             _worldObject = worldObject;
 
-            level = (byte)(_worldObject.Type - ObjectType.Gen_level1);
-            SetLevel(level);
+            SetLevel(_worldObject.Flags);
         }
 
         void IObjectView.SetActive(bool isActive)

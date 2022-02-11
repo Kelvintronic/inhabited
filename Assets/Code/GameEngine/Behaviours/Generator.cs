@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace GameEngine
 {
-    public class SpawnMonsterEventArgs : EventArgs
+    public class SpawnBugEventArgs : EventArgs
     {
         public int generatorId;
         public WorldVector position;
@@ -19,12 +19,12 @@ namespace GameEngine
         private Collider2D[] _overlapResult = new Collider2D[1];
 
         [Range(0f, 1f)]
-        [Tooltip("Probability of generating an NPC")]
+        [Tooltip("Probability of generating a Bug")]
         public float probability = 0.5f;
         [Tooltip("Seconds between each generation attempt")]
         public float period = 5f;
 
-        public event EventHandler<SpawnMonsterEventArgs> Spawn;
+        public event EventHandler<SpawnBugEventArgs> Spawn;
 
         private int _spawnCount = 0;
 
@@ -59,7 +59,7 @@ namespace GameEngine
 
                                 if (Spawn != null)
                                 {
-                                    Spawn.Invoke(this, new SpawnMonsterEventArgs
+                                    Spawn.Invoke(this, new SpawnBugEventArgs
                                     {
                                         generatorId = _view.Id,
                                         position = new WorldVector(candidate.x, candidate.y)

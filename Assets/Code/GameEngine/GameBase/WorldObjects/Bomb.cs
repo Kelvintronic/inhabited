@@ -26,9 +26,9 @@ namespace GameEngine
             {
                 switch(worldObject.Type)
                 {
-                    case ObjectType.NPC_level1:
-                    case ObjectType.NPC_level2:
-                    case ObjectType.NPC_level3:
+                    case ObjectType.NPCBug:
+                    case ObjectType.NPCMercenary:
+                    case ObjectType.NPCTrader:
                         if ((worldObject.Position - position).Length() < 10.0f)
                         destroyedItems.Add(worldObject.Id);
                         break;
