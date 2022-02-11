@@ -44,12 +44,15 @@ namespace GameEngine
 
         // unique data required by clients
         protected INetSerializable _data = null;
+        protected byte _flags;
+        public byte Flags => _flags;
 
         protected WorldObject(WorldVector position)
         {
             _id = _nextid++;
             _position = position;
             _active = true;
+            _flags = 0;
         }
 
         // required to deserialise
@@ -79,14 +82,8 @@ namespace GameEngine
             _position = newPosition;
         }
 
-        // should return true if object is able to be destroyed
+        // should return true if object should be destroyed
         public virtual bool OnHit()
-        {
-            return false;
-        }
-
-        // returns true if object has changed
-        public virtual bool Update(float delta)
         {
             return false;
         }
@@ -102,6 +99,7 @@ namespace GameEngine
             writer.Put(_isInteractable);
             writer.Put(_width);
             writer.Put(_isHorizontal);
+            writer.Put(_flags);
 
             if (_data != null)
                 _data.Serialize(writer);
@@ -117,6 +115,7 @@ namespace GameEngine
             _isInteractable = reader.GetBool();
             _width = reader.GetInt();
             _isHorizontal = reader.GetBool();
+            _flags = reader.GetByte();
 
             switch(_type)
             {

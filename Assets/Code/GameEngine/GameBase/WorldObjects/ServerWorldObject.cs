@@ -34,7 +34,7 @@ namespace GameEngine
             _notificationManager = manager;
         }
 
-        public override bool Update(float delta)
+        public virtual bool Update(float delta)
         {
             _updateTimer.UpdateAsCooldown(delta);
 

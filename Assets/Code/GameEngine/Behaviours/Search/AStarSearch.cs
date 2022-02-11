@@ -101,9 +101,9 @@ namespace GameEngine.Search
                             // ignore cases
                             case ObjectType.None:
                             case ObjectType.NPC_Intent:
-                            case ObjectType.NPC_level1:
-                            case ObjectType.NPC_level2:
-                            case ObjectType.NPC_level3:
+                            case ObjectType.NPCBug:
+                            case ObjectType.NPCMercenary:
+                            case ObjectType.NPCTrader:
                                 // valid move found, yield the edge
                                 yield return new Arc(node, new Vector2Int(x, y), action.action, action.cost);
                                 break;

@@ -418,9 +418,9 @@ namespace GameEngine
                         case ObjectType.FalseWall:
                             view = GenericView.Create(_prefabStore.genericObjectPrefab, _cachedObjectState.worldObjects[i], _spriteArray[0]);
                             break;
-                        case ObjectType.NPC_level1:
-                        case ObjectType.NPC_level2:
-                        case ObjectType.NPC_level3:
+                        case ObjectType.NPCBug:
+                        case ObjectType.NPCTrader:
+                        case ObjectType.NPCMercenary:
                             var npcView = NPCView.Create(_prefabStore.npcObjectPrefab, _cachedObjectState.worldObjects[i], _serverLogic.IsStarted);
                             if (_serverLogic.IsStarted)
                             {
@@ -429,14 +429,12 @@ namespace GameEngine
                             }
                             view = npcView;
                             break;
-                        case ObjectType.Gen_level1:
-                        case ObjectType.Gen_level2:
-                        case ObjectType.Gen_level3:
+                        case ObjectType.BugNest:
                             var genView = GenView.Create(_prefabStore.genObjectPrefab, _cachedObjectState.worldObjects[i], _serverLogic.IsStarted);
                             if (_serverLogic.IsStarted)
                             {
                                 var generator = genView.GetComponent<Generator>();
-                                generator.Spawn += _serverLogic.OnSpawnMonster;
+                                generator.Spawn += _serverLogic.OnSpawnBug;
                             }
                             view = genView;
                             break;

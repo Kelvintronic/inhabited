@@ -14,7 +14,7 @@ namespace GameEngine
 
     public class ServerObjectManager : WorldObjectManagerBase, INotificationManager
     {
-        private readonly Dictionary<int, WorldObject> _worldObjects;
+        private readonly Dictionary<int, ServerWorldObject> _worldObjects;
         private Queue<int> _updates;
         
         public override int Count => _worldObjects.Count;
@@ -47,7 +47,7 @@ namespace GameEngine
             _netSender = netSender;
             _playerList = playerList;
 
-            _worldObjects = new Dictionary<int, WorldObject>();
+            _worldObjects = new Dictionary<int, ServerWorldObject>();
             _interactables = new Dictionary<VectorInt, int>();
             _updates = new Queue<int>();
         }
@@ -123,7 +123,7 @@ namespace GameEngine
             }
         }
 
-        public bool AddWorldObject(WorldObject worldObject)
+        public bool AddWorldObject(ServerWorldObject worldObject)
         {
 
             if (worldObject.IsInteractable) // add interactables reference
@@ -205,7 +205,7 @@ namespace GameEngine
             _netSender.SendToPeer(peer,PacketType.WorldObjectState, _worldObjectState);
         }
 
-        public WorldObject CreateWorldObject(ObjectType type, WorldVector position, int width = 1, bool isHorizontal = true)
+        public ServerWorldObject CreateWorldObject(ObjectType type, WorldVector position, int width = 1, bool isHorizontal = true, byte data = 0)
         {
             ServerWorldObject newObject = null;
             switch (type)
@@ -243,15 +243,17 @@ namespace GameEngine
                     break;
 
                 // NPCs and Generators
-                case ObjectType.Gen_level1:
-                case ObjectType.Gen_level2:
-                case ObjectType.Gen_level3:
-                    newObject = new Gen(position, type);
+                case ObjectType.BugNest:
+                    newObject = new BugNest(position, data);
                     break;
-                case ObjectType.NPC_level1:
-                case ObjectType.NPC_level2:
-                case ObjectType.NPC_level3:
-                    newObject = new NPC(position, type, this);
+                case ObjectType.NPCBug:
+                    newObject = new NPCBug(position, this);
+                    break;
+                case ObjectType.NPCTrader:
+                    newObject = new NPCTrader(position, this);
+                    break;
+                case ObjectType.NPCMercenary:
+                    newObject = new NPCMercenary(position, this);
                     break;
                 case ObjectType.Chest:
                     newObject = new Chest(position);

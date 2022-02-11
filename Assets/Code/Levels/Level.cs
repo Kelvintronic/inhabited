@@ -323,22 +323,25 @@ namespace GameEngine
 
                         // NPC and Generators
                         case "DandyObjectSprites_10":
-                            _objectArray.Array[x, y].type = ObjectType.Gen_level1;
+                            _objectArray.Array[x, y].type = ObjectType.BugNest;
+                            _objectArray.Array[x, y].data = 1;
                             break;
                         case "DandyObjectSprites_11":
-                            _objectArray.Array[x, y].type = ObjectType.Gen_level2;
+                            _objectArray.Array[x, y].type = ObjectType.BugNest;
+                            _objectArray.Array[x, y].data = 2;
                             break;
                         case "DandyObjectSprites_12":
-                            _objectArray.Array[x, y].type = ObjectType.Gen_level3;
+                            _objectArray.Array[x, y].type = ObjectType.BugNest;
+                            _objectArray.Array[x, y].data = 3;
                             break;
                         case "DandyObjectSprites_13":
-                            _objectArray.Array[x, y].type = ObjectType.NPC_level1;
+                            _objectArray.Array[x, y].type = ObjectType.NPCBug;
                             break;
                         case "DandyObjectSprites_14":
-                            _objectArray.Array[x, y].type = ObjectType.NPC_level2;
+                            _objectArray.Array[x, y].type = ObjectType.NPCTrader;
                             break;
                         case "DandyObjectSprites_15":
-                            _objectArray.Array[x, y].type = ObjectType.NPC_level3;
+                            _objectArray.Array[x, y].type = ObjectType.NPCMercenary;
                             break;
                     }
                 }
@@ -358,9 +361,10 @@ namespace GameEngine
     public struct MapCell
     {
         public ObjectType type;
+        public byte data;
         public int id;
 
-        public static MapCell Empty { get { return new MapCell { type = ObjectType.None, id = -1 }; } }
+        public static MapCell Empty { get { return new MapCell { type = ObjectType.None, data = 0, id = -1 }; } }
     }
     public class MapArray
     {
@@ -392,7 +396,7 @@ namespace GameEngine
             {
                 for(int y=0; y<yCount; y++)
                 {
-                    newArray.Array[x, y] = Array[x, y];
+                    newArray.Array[x, y] = new MapCell { data = Array[x, y].data, id = Array[x, y].id, type = Array[x, y].type };
                 }
             }
             return newArray;
@@ -402,6 +406,8 @@ namespace GameEngine
         {
             Array[location.x, location.y].id = content.id;
             Array[location.x, location.y].type = content.type;
+            Array[location.x, location.y].data = content.data;
+
         }
 
         public MapCell GetCell(WorldVector worldVector)

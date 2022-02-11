@@ -316,9 +316,9 @@ namespace GameEngine
                         }
                     }
                     // create object
-                    var worldObject = _objectManager.CreateWorldObject(objectMapArray.Array[x, y].type,
+                    var worldObject = _objectManager.CreateWorldObject(objectMapArray.Array[x, y].type, 
                                                     new WorldVector(x + objectMapArray.xOffset + 0.5f, y + objectMapArray.yOffset + 0.5f),
-                                                    width, isHorizontal);
+                                                    width, isHorizontal, objectMapArray.Array[x, y].data);
 
                     if (worldObject != null)
                     {
@@ -346,15 +346,15 @@ namespace GameEngine
             uint scoreFactor = 0;
             switch(worldObject.Type)
             {
-                case ObjectType.NPC_level1:
-                case ObjectType.NPC_level2:
-                case ObjectType.NPC_level3:
-                    scoreFactor = ((NPC)worldObject).level;
+                case ObjectType.NPCBug:
+                    scoreFactor = 1;
                     break;
-                case ObjectType.Gen_level1:
-                case ObjectType.Gen_level2:
-                case ObjectType.Gen_level3:
-                    scoreFactor = ((Gen)worldObject).level;
+                case ObjectType.NPCMercenary:
+                case ObjectType.NPCTrader:
+                    scoreFactor = 2;
+                    break;
+                case ObjectType.BugNest:
+                    scoreFactor = 5;
                     break;
             }
 
@@ -370,7 +370,7 @@ namespace GameEngine
                     case ObjectType.Heart:
                         if(!_playerManager.ResurrectNextDeadPlayer(worldObject.Position))
                         {
-                            var newNPC = (NPC)_objectManager.CreateWorldObject(ObjectType.NPC_level3, worldObject.Position);
+                            var newNPC = (NPCBug)_objectManager.CreateWorldObject(ObjectType.NPCBug, worldObject.Position);
                             _objectManager.AddWorldObject(newNPC);
                         }
                         break;
@@ -399,15 +399,14 @@ namespace GameEngine
             uint damageFactor = 0;
             switch (worldObject.Type)
             {
-                case ObjectType.NPC_level1:
-                case ObjectType.NPC_level2:
-                case ObjectType.NPC_level3:
-                    damageFactor = ((NPC)worldObject).level;
+                case ObjectType.NPCMercenary:
+                    damageFactor = 3;
                     break;
-                case ObjectType.Gen_level1:
-                case ObjectType.Gen_level2:
-                case ObjectType.Gen_level3:
-                    damageFactor = ((Gen)worldObject).level;
+                case ObjectType.NPCBug:
+                    damageFactor = 1;
+                    break;
+                case ObjectType.NPCTrader:
+                    damageFactor = 5;
                     break;
             }
 
@@ -428,14 +427,13 @@ namespace GameEngine
         }
 
         // reacts to a Generator Spawn
-        public void OnSpawnMonster(object sender, SpawnMonsterEventArgs e)
+        public void OnSpawnBug(object sender, SpawnBugEventArgs e)
         {
-            Gen genObject = (Gen)_objectManager.GetById(e.generatorId);
+            BugNest genObject = (BugNest)_objectManager.GetById(e.generatorId);
             if (genObject == null)
                 return;
 
-            var newNPC = (NPC)_objectManager.CreateWorldObject(ObjectType.NPC_level1+genObject.level, e.position);
-            newNPC.level=genObject.level;
+            var newNPC = (NPC)_objectManager.CreateWorldObject(ObjectType.NPCBug, e.position);
 
             _objectManager.AddWorldObject(newNPC);
         }

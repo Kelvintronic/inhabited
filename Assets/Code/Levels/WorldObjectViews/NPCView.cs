@@ -5,18 +5,17 @@ namespace GameEngine
     public class NPCView : MonoBehaviour, IObjectView
     {
         private int _id;
+        private int _viewIndex;
+        private const int Views = 3; // number of different views available
+
         [HideInInspector] public Rigidbody2D _rigidbody2d;
-        [SerializeField] private GameObject[] _levels;
+        [SerializeField] private GameObject[] _views;
 
         private WorldObject _worldObject;
         private bool _isServer;
         private Monster _monster;
 
-        public const int Levels = 3; // number of different levels the NPC has
-        public NPCStance stance;
-
-        [Range(0, Levels - 1)]
-        public byte level;
+        private byte health;
 
         public int Id { get => _id; }
         public bool IsServer { get => _isServer; }
@@ -31,28 +30,15 @@ namespace GameEngine
         private void Start()
         {
             _id = _worldObject.Id;
-
-            level = (byte)(_worldObject.Type - ObjectType.NPC_level1);
-            SetLevel(level);
-        }
-
-        public void SetLevel(byte newLevel)
-        {
-            if (newLevel < Levels)
-            {
-                level = newLevel;
-                for (byte i = 0; i < Levels; i++)
-                {
-                    _levels[i].SetActive(i == level);
-                }
-                _rigidbody2d = _levels[level].GetComponent<Rigidbody2D>();
-            }
+            _viewIndex = _worldObject.Type - ObjectType.NPCBug;
+            for (byte i = 0; i < Views; i++)
+                _views[i].SetActive(i == _viewIndex);
+            _rigidbody2d = _views[_viewIndex].GetComponent<Rigidbody2D>();
         }
 
         public static NPCView Create(NPCView prefab, WorldObject worldObject, bool isServer)
         {
             var npc = Instantiate<NPCView>(prefab, new Vector3(worldObject.Position.x, worldObject.Position.y), Quaternion.identity);
-            //, Object.FindObjectOfType<ClientLogic>().levelSet.GetCurrentLevel().transform);
             npc._worldObject = worldObject;
             npc._isServer = isServer;
             return npc;
