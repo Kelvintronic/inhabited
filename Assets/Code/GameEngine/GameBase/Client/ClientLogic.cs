@@ -338,8 +338,9 @@ namespace GameEngine
 
             _lastServerTick = packet.ServerTick;
 
-            // set Map
-            _levelSet.SetMap(packet.Map);
+            // set Map (only if we are not the server)
+            if(!IsServer)
+                _levelSet.SetMap(packet.Map);
 
             // create new player
             _ourPlayer = new ClientPlayer(this, _playerHandle, packet);

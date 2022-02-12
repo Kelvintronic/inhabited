@@ -246,7 +246,6 @@ namespace GameEngine
         {
 
             _map = nMap;
-
             SetMap();
 
             // Send new map packet to all except our client

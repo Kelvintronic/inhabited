@@ -138,6 +138,10 @@ namespace GameEngine
             }
             else // add map array reference(s)
             {
+                if (worldObject.Type == ObjectType.FalseWall)
+                {
+                    Debug.Log("False wall found");
+                }
                 // get potential location of the object in the array
                 worldObject.SnapToGrid();
                 var celPos = _mapArray.GetCellVector(worldObject.Position);
