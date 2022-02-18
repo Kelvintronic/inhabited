@@ -28,6 +28,7 @@ namespace GameEngine
                 if (_hasIntent)
                 {
                     _position += _moveDelta;
+                    _rotation = Mathf.Atan2(_moveDelta.y, _moveDelta.x) - 90 * Mathf.Deg2Rad;
                     _moveCount--;
                     _update = true;
 

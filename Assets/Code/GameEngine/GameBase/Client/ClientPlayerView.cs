@@ -6,11 +6,13 @@ namespace GameEngine
 {
     public class ClientPlayerView : MonoBehaviour, IPlayerView
     {
-        [SerializeField] private GameObject _arrow;
+        [SerializeField] private GameObject _sprite;
         [SerializeField] private GameObject _target;
         [SerializeField] private GameObject _serverProjectilePrefab;
         [SerializeField] private GameObject _clientProjectilePrefab;
         [SerializeField] private GameObject _fogOfWarCircle;
+
+        private Animator _animator;
         private const int _distanceOfSight = 6;
         private const int _targetSpeed = 2;
 
@@ -59,15 +61,16 @@ namespace GameEngine
 
         private void Awake()
         {
-            _rigidbody2d = gameObject.GetComponent<Rigidbody2D>();
-            _collider2d = gameObject.GetComponent<Collider2D>();
-            _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            _rigidbody2d = GetComponent<Rigidbody2D>();
+            _animator = _sprite.GetComponent<Animator>();
+            //  _collider2d = gameObject.GetComponent<Collider2D>();
+            //  _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
             _enemySpriteMask = transform.Find("EnemySpriteMask").GetComponent<SpriteMask>();
         }
 
         public void SetSprite(Sprite sprite)
         {
-            _spriteRenderer.sprite = sprite;
+           // _spriteRenderer.sprite = sprite;
         }
 
         public byte GetPlayerId()
@@ -102,6 +105,7 @@ namespace GameEngine
         {
             // Debug.Log("Move!");
             _velocity = context.action.ReadValue<Vector2>();
+            _animator.SetFloat("Speed", _velocity.magnitude); 
         }
 
         public void Fire(InputAction.CallbackContext context)
@@ -156,7 +160,7 @@ namespace GameEngine
 
             // work out player direction and set arrow accordingly
             _rotation = Mathf.Atan2(_targetPosition.y, _targetPosition.x) - 90 * Mathf.Deg2Rad;
-            _arrow.transform.rotation = Quaternion.Euler(0f, 0f, _rotation * Mathf.Rad2Deg);
+            _sprite.transform.rotation = Quaternion.Euler(0f, 0f, _rotation * Mathf.Rad2Deg);
 
             // activate key
             if (Keyboard.current.eKey.wasPressedThisFrame)
@@ -254,8 +258,8 @@ namespace GameEngine
         }
         public GameObject Shoot(bool isServer)
         {
-            var shotSpawnRot = _arrow.transform.rotation;
-            var shotSpawnPos = _arrow.transform.position + (shotSpawnRot * Vector3.up);
+            var shotSpawnRot = _sprite.transform.rotation;
+            var shotSpawnPos = _sprite.transform.position + (shotSpawnRot * Vector3.up);
 
             GetComponent<AudioSource>().Play();
 

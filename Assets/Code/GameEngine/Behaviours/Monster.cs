@@ -21,8 +21,7 @@ namespace GameEngine
 
     public class Monster : MonoBehaviour
     {
-        [Range(0, 6)]
-        public int speed;
+        [HideInInspector] public float speed;
 
         [SerializeField] private Sensor _sensor;
 
@@ -55,6 +54,7 @@ namespace GameEngine
             var initialPos = new WorldVector { x = _position.x, y = _position.y };
             _buffer.Add(initialPos);
             _timer = 0;
+
         }
 
         private void Update()
@@ -79,6 +79,11 @@ namespace GameEngine
 
                 // assert: t>0 && t<=1
                 var newPosition = WorldVector.Lerp(posA, posB, t);
+
+                if (posA != posB)
+                    speed = 1;
+                else
+                    speed = 0;
 
                 _position.x = newPosition.x;
                 _position.y = newPosition.y;
@@ -225,11 +230,12 @@ namespace GameEngine
 
         public void UpdatePosition(WorldVector pos)
         {
-           // to disable animation set the position directly and don't add to buffer
+            // to disable animation set the position directly and don't add to buffer
 
-           // _position.x = pos.x;
-           // _position.y = pos.y;
-           _buffer.Add(pos);
+            // _position.x = pos.x;
+            // _position.y = pos.y;
+
+            _buffer.Add(pos);
         }
     }
 }

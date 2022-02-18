@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3355806074387905423}
   - component: {fileID: 7351926766875097910}
   - component: {fileID: 3577894385410070536}
+  - component: {fileID: 4208027381359261382}
   m_Layer: 11
   m_Name: BugView
   m_TagString: NPC
@@ -26,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1978602312725059994}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.022, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 75671051177448779}
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7715341523024018027, guid: cc68e934698b09a43a4f9ceed75b7d6a,
+  m_Sprite: {fileID: 4588774911096800245, guid: 755e73cbcf9cd91449c7cc4d382caa17,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -81,7 +82,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &3577894385410070536
 BoxCollider2D:
@@ -96,19 +97,38 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.00000023841858, y: 0.031210542}
+  m_Offset: {x: 0.00545606, y: -0.14066303}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 1.6}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.88139987, y: 0.8189789}
+  m_Size: {x: 0.45580763, y: 0.9553869}
   m_EdgeRadius: 0
+--- !u!95 &4208027381359261382
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1978602312725059994}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f5794e97fda1e7f47aac366bf34141a6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5672207666760838759
 GameObject:
   m_ObjectHideFlags: 0
@@ -120,6 +140,7 @@ GameObject:
   - component: {fileID: 8150255267072640723}
   - component: {fileID: 2733961398983842547}
   - component: {fileID: 6793689333530267544}
+  - component: {fileID: 9065339268989093964}
   m_Layer: 11
   m_Name: TraderView
   m_TagString: NPC
@@ -180,7 +201,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7125965423087723974, guid: cc68e934698b09a43a4f9ceed75b7d6a,
+  m_Sprite: {fileID: 4636273871994739428, guid: f8c2220121679184f95f83c578a59aef,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -190,7 +211,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &6793689333530267544
 BoxCollider2D:
@@ -205,19 +226,38 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0015607178, y: 0.000000029802322}
+  m_Offset: {x: -0.0015607178, y: 0.005456358}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1, y: 0.52380955}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.9968788, y: 0.9937578}
+  m_Size: {x: 0.9968788, y: 0.579078}
   m_EdgeRadius: 0
+--- !u!95 &9065339268989093964
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5672207666760838759}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4012576aabaab324181a4c17440b1379, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7235938930082294969
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,6 +269,7 @@ GameObject:
   - component: {fileID: 6395545424079115359}
   - component: {fileID: 3960795346159889142}
   - component: {fileID: 6577778393518348104}
+  - component: {fileID: 5630301450367000330}
   m_Layer: 11
   m_Name: MercView
   m_TagString: NPC
@@ -289,7 +330,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7251503260035293398, guid: cc68e934698b09a43a4f9ceed75b7d6a,
+  m_Sprite: {fileID: 5903905991286055481, guid: 323645b365947d8488da094517e53a28,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -299,7 +340,7 @@ SpriteRenderer:
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
-  m_MaskInteraction: 1
+  m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!61 &6577778393518348104
 BoxCollider2D:
@@ -314,19 +355,38 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0015607476, y: 0.06086053}
+  m_Offset: {x: 0.06118682, y: 0.06358862}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    pivot: {x: 0.4129506, y: 0.343311}
+    oldSize: {x: 1.1111112, y: 1.6666666}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.99687874, y: 0.87827885}
+  m_Size: {x: 0.8713836, y: 0.5672692}
   m_EdgeRadius: 0
+--- !u!95 &5630301450367000330
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7235938930082294969}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 670098c7804916a4d8566e45ed49517c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7642738837040811129
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,6 +46,10 @@ namespace GameEngine
 
         public override bool Update(float delta)
         {
+            if (_hasIntent)
+                _flags = 1;
+            else
+                _flags = 0;
             return base.Update(delta);
         }
 
@@ -59,29 +63,32 @@ namespace GameEngine
             {
                 var currentCell = _mapArray.GetCellVector(_position);
 
-                if (!GetNextMove(new Vector2Int(currentCell.x, currentCell.y)))
-                    return; // no move available so do nothing
-
-                // check to see if there is something in the toCell location
-                if (_mapArray.Array[_nextCell.x, _nextCell.y].type == ObjectType.None)
+                // is a move available?
+                if (GetNextMove(new Vector2Int(currentCell.x, currentCell.y)))
                 {
-                    _fromCell = currentCell;
-                    _toCell = _nextCell;
-                    _mapArray.Array[_nextCell.x, _nextCell.y] = new MapCell { type = ObjectType.NPC_Intent, id = Id };
+                    // check to see if there is something in the toCell location
+                    if (_mapArray.Array[_nextCell.x, _nextCell.y].type == ObjectType.None)
+                    {
+                        _fromCell = currentCell;
+                        _toCell = _nextCell;
+                        _mapArray.Array[_nextCell.x, _nextCell.y] = new MapCell { type = ObjectType.NPC_Intent, id = Id };
 
-                    _intentVector = _mapArray.GetWorldVector(_toCell.x, _toCell.y);
+                        _intentVector = _mapArray.GetWorldVector(_toCell.x, _toCell.y);
 
-                    _moveCount = MaxSpeed - _speed + 1;
-                    _moveDelta = (_intentVector - _position) / _moveCount;
-                    _hasIntent = true;
+                        _moveCount = MaxSpeed - _speed + 1;
+                        _moveDelta = (_intentVector - _position) / _moveCount;
+                        _hasIntent = true;
 
-                    _blockedPathTimer.Reset();
-                }
-                else
-                {
-                    // if path is blocked wait
-                    if(_blockedPathTimer.IsTimeElapsed)
                         _blockedPathTimer.Reset();
+
+                        return;
+                    }
+                    else
+                    {
+                        // if path is blocked wait
+                        if(_blockedPathTimer.IsTimeElapsed)
+                            _blockedPathTimer.Reset();
+                    }
                 }
             }
         }

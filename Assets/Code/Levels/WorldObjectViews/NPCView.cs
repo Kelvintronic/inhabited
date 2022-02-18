@@ -8,12 +8,12 @@ namespace GameEngine
         private int _viewIndex;
         private const int Views = 3; // number of different views available
 
-        [HideInInspector] public Rigidbody2D _rigidbody2d;
         [SerializeField] private GameObject[] _views;
 
         private WorldObject _worldObject;
         private bool _isServer;
         private Monster _monster;
+        private Animator _animator;
 
         private byte health;
 
@@ -33,7 +33,7 @@ namespace GameEngine
             _viewIndex = _worldObject.Type - ObjectType.NPCBug;
             for (byte i = 0; i < Views; i++)
                 _views[i].SetActive(i == _viewIndex);
-            _rigidbody2d = _views[_viewIndex].GetComponent<Rigidbody2D>();
+            _animator = _views[_viewIndex].transform.GetComponent<Animator>();
         }
 
         public static NPCView Create(NPCView prefab, WorldObject worldObject, bool isServer)
@@ -74,10 +74,15 @@ namespace GameEngine
             // to update view here.
             _worldObject = worldObject;
 
-            Start();
+            _views[_viewIndex].transform.rotation = Quaternion.Euler(0f, 0f, _worldObject.Rotation * Mathf.Rad2Deg);
 
             if (_monster != null)
+            {
                 _monster.UpdatePosition(worldObject.Position);
+                if (_animator!=null)
+                        _animator.SetFloat("Speed", _monster.speed);
+
+            }
         }
 
         void IObjectView.SetActive(bool isActive)
