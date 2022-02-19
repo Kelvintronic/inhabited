@@ -23,7 +23,9 @@ namespace GameEngine
         protected WorldVector _watching;       // location of object of intent
         protected bool _isWatching = false;
         protected bool _hasIntent = false;     // true if intentVector is valid
+        protected bool _isMoving = false;       // true if a movement transition is occurring
         protected WorldVector _intentVector;   // destination location
+        protected Vector2Int _currentCell;      // where we are in the map array
         protected Vector2Int _fromCell;         // current array cell
         protected Vector2Int _toCell;           // destination array cell
         protected Vector2Int _nextCell;
@@ -37,60 +39,13 @@ namespace GameEngine
 
         public void SetWatching(WorldVector watching)
         {
-            if (!_hasIntent)
-            {
-                _watching = watching;
-                _isWatching = true;
-            }
+            _watching = watching;
+            _isWatching = true;
         }
 
         public override bool Update(float delta)
         {
-            if (_hasIntent)
-                _flags = 1;
-            else
-                _flags = 0;
             return base.Update(delta);
-        }
-
-        protected virtual void UpdateMovement()
-        {
-            // if watching is invalid do nothing
-            if (!_isWatching)
-                return;
-
-            if (!_hasIntent)
-            {
-                var currentCell = _mapArray.GetCellVector(_position);
-
-                // is a move available?
-                if (GetNextMove(new Vector2Int(currentCell.x, currentCell.y)))
-                {
-                    // check to see if there is something in the toCell location
-                    if (_mapArray.Array[_nextCell.x, _nextCell.y].type == ObjectType.None)
-                    {
-                        _fromCell = currentCell;
-                        _toCell = _nextCell;
-                        _mapArray.Array[_nextCell.x, _nextCell.y] = new MapCell { type = ObjectType.NPC_Intent, id = Id };
-
-                        _intentVector = _mapArray.GetWorldVector(_toCell.x, _toCell.y);
-
-                        _moveCount = MaxSpeed - _speed + 1;
-                        _moveDelta = (_intentVector - _position) / _moveCount;
-                        _hasIntent = true;
-
-                        _blockedPathTimer.Reset();
-
-                        return;
-                    }
-                    else
-                    {
-                        // if path is blocked wait
-                        if(_blockedPathTimer.IsTimeElapsed)
-                            _blockedPathTimer.Reset();
-                    }
-                }
-            }
         }
 
         public override bool OnHit()
@@ -124,14 +79,16 @@ namespace GameEngine
         /// <param name="currentCell"></param>
         /// <returns></returns>
 
-        private bool GetNextMove(Vector2Int currentCell)
+        protected virtual bool GetNextMove()
         {
+            _blockedPathTimer.Reset();
+
             // snap watching to grid
             var targetCell = _mapArray.GetCellVector(_watching);
             var targetVector = _mapArray.GetWorldVector(targetCell.x, targetCell.y);
 
             // Start from current cell
-            Vector2Int toCell = currentCell;
+            Vector2Int toCell = _currentCell;
 
             // convert absolute watching to relative
             var velocity = (targetVector - _position).Normalize(); ;
@@ -146,14 +103,35 @@ namespace GameEngine
             if (velocity.y > 0.5f)
                 toCell.y++;
 
-            if(toCell!=currentCell)
+            if (toCell != _currentCell)
             {
                 _nextCell = toCell;
                 return true;
             }
 
-            // the watching cell is the same as our cell so invalidate watching
-            _isWatching = false;
+            return false;
+        }
+
+        protected virtual bool TryToMove()
+        {
+
+            // check to see if there is something in the toCell location
+            if (_mapArray.Array[_nextCell.x, _nextCell.y].type == ObjectType.None)
+            {
+                _fromCell = _currentCell;
+                _toCell = _nextCell;
+
+                // claim the destination cell for ourselves
+                _mapArray.Array[_nextCell.x, _nextCell.y] = new MapCell { type = ObjectType.NPC_Intent, id = Id };
+
+                _intentVector = _mapArray.GetWorldVector(_toCell.x, _toCell.y);
+
+                _moveCount = MaxSpeed - _speed + 1;
+                _moveDelta = (_intentVector - _position) / _moveCount;
+                _isMoving = true;
+
+                return true;
+            }
 
             return false;
         }

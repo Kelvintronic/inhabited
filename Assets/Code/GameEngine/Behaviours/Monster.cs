@@ -21,8 +21,6 @@ namespace GameEngine
 
     public class Monster : MonoBehaviour
     {
-        [HideInInspector] public float speed;
-
         [SerializeField] private Sensor _sensor;
 
         public event EventHandler<AttackEventArgs> Attack;
@@ -39,6 +37,8 @@ namespace GameEngine
 
         private readonly LiteRingBuffer<WorldVector> _buffer = new LiteRingBuffer<WorldVector>(30);
         private float _timer;
+
+        public bool IsMoving { get => _buffer.Count>1; }
 
         public float SensorRadius
         {
@@ -80,11 +80,6 @@ namespace GameEngine
                 // assert: t>0 && t<=1
                 var newPosition = WorldVector.Lerp(posA, posB, t);
 
-                if (posA != posB)
-                    speed = 1;
-                else
-                    speed = 0;
-
                 _position.x = newPosition.x;
                 _position.y = newPosition.y;
             }
@@ -123,7 +118,13 @@ namespace GameEngine
             // sensed player is not Empty
             if (closestPlayer.heading.magnitude > 1.5f)
             {
-                // we are not right next to them, so tell server to watch
+                // we are not right next to them...
+
+                // if we are still moving do nothing
+                if (_buffer.Count > 1)
+                    return;
+
+                // if we have finished moving set server watching flag
                 SetEyesOn(new WorldVector(closestPlayer.location.x, closestPlayer.location.y));
                 return;
             }

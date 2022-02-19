@@ -19,39 +19,62 @@ namespace GameEngine
         public override bool Update(float delta)
         {
 
-            // _noPathIdleTimer.UpdateAsCooldown(Time.deltaTime);
-            _blockedPathTimer.UpdateAsCooldown(Time.deltaTime);
+            _blockedPathTimer.UpdateAsCooldown(delta);
 
             if (_updateTimer.IsTimeElapsed)
-            {
-                _updateTimer.Reset();
-                if (_hasIntent)
+                if (_isWatching)
                 {
-                    _position += _moveDelta;
-                    _rotation = Mathf.Atan2(_moveDelta.y, _moveDelta.x) - 90 * Mathf.Deg2Rad;
-                    _moveCount--;
-                    _update = true;
+                    _updateTimer.Reset();
 
-                    // if client animation is complete:
-                    if (_moveCount == 0)
+                    // get current cell
+                    _currentCell = _mapArray.GetCellVector(_position);
+
+                    if (!_hasIntent)
                     {
-                        _position = _intentVector; // ensure we have hit the spot
-                        _mapArray.SetCell(_fromCell, MapCell.Empty); // empty the old cell
-                        _hasIntent = false;
-                        UpdateMovement();
+                        _hasIntent = GetNextMove(); // see if there is a move to make
+                        _isMoving = false;
+                    }
+
+                    if (_hasIntent && !_isMoving)
+                    {
+                        if (!TryToMove())
+                        {
+                            // path is blocked so wait
+                            if (_blockedPathTimer.IsTimeElapsed)
+                            {
+                                // if we've been waiting too long give up trying to move
+                                _blockedPathTimer.Reset();
+                                _hasIntent = false;
+                                _isWatching = false;
+                            }
+                        }
+                    }
+
+                    // if moving is in progress, continue
+                    if (_isMoving)
+                    {
+                        _position += _moveDelta;
+                        _rotation = Mathf.Atan2(_moveDelta.y, _moveDelta.x) - 90 * Mathf.Deg2Rad;
+                        _moveCount--;
+                        _update = true;
+
+                        // if client animation is complete:
+                        if (_moveCount == 0)
+                        {
+                            _position = _intentVector; // ensure we have hit the spot
+                            _mapArray.SetCell(_fromCell, MapCell.Empty); // empty the old cell
+                            _hasIntent = false;
+                            _isWatching = false;
+                        }
                     }
                 }
-                else
-                {
-                    UpdateMovement();
-                }
 
-            }
 
             // Don't forget to set the boolean: _update=true if you need the client to be updated
             // Note: The client only gets the WorldObject base data
-            return base.Update(delta); 
+            return base.Update(delta);
         }
+
 
         public override bool OnHit()
         {

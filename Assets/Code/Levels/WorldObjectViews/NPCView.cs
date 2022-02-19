@@ -14,6 +14,7 @@ namespace GameEngine
         private bool _isServer;
         private Monster _monster;
         private Animator _animator;
+        private GameTimer _animationRefreshTimer;
 
         private byte health;
 
@@ -34,9 +35,31 @@ namespace GameEngine
             for (byte i = 0; i < Views; i++)
                 _views[i].SetActive(i == _viewIndex);
             _animator = _views[_viewIndex].transform.GetComponent<Animator>();
+            _animationRefreshTimer = new GameTimer(1.0f);
+
         }
 
-        public static NPCView Create(NPCView prefab, WorldObject worldObject, bool isServer)
+        private void Update()
+        {
+            _animationRefreshTimer.UpdateAsCooldown(Time.deltaTime);
+            if (_animator != null)
+            {
+                if(_monster!=null)
+                    if (_monster.IsMoving)
+                    {
+                        _animator.SetFloat("Speed", 1);
+                        _animationRefreshTimer.Reset();
+                    }
+                    else
+                    {
+                        // delay stopping animation
+                        if(_animationRefreshTimer.IsTimeElapsed)
+                            _animator.SetFloat("Speed", 0);
+                    }
+            }
+        }
+
+    public static NPCView Create(NPCView prefab, WorldObject worldObject, bool isServer)
         {
             var npc = Instantiate<NPCView>(prefab, new Vector3(worldObject.Position.x, worldObject.Position.y), Quaternion.identity);
             npc._worldObject = worldObject;
@@ -77,12 +100,7 @@ namespace GameEngine
             _views[_viewIndex].transform.rotation = Quaternion.Euler(0f, 0f, _worldObject.Rotation * Mathf.Rad2Deg);
 
             if (_monster != null)
-            {
-                _monster.UpdatePosition(worldObject.Position);
-                if (_animator!=null)
-                        _animator.SetFloat("Speed", _monster.speed);
-
-            }
+                _monster.UpdatePosition(_worldObject.Position);
         }
 
         void IObjectView.SetActive(bool isActive)

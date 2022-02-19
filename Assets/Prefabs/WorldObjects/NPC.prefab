@@ -435,7 +435,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 220eb0203ab9a06459c5f42c13fae4f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
   _sensor: {fileID: 2444993372665068130}
 --- !u!114 &8629288319733082342
 MonoBehaviour:
@@ -449,7 +448,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acca92b3df770c2418bf92a4318cea2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rigidbody2d: {fileID: 0}
   _views:
   - {fileID: 1978602312725059994}
   - {fileID: 5672207666760838759}
