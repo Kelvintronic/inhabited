@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace GameEngine
 {
-    public class GenView : MonoBehaviour, IObjectView
+    public class BugNestView : MonoBehaviour, IObjectView
     {
         [HideInInspector] public ClientLogic _clientLogic;
         private int _id;
@@ -19,6 +19,7 @@ namespace GameEngine
 
         public int Id { get => _id; }
         public bool IsServer { get => _isServer; }
+        public bool IsOpen { get => _worldObject.Flags>0; }
 
         void Awake()
         {
@@ -29,26 +30,11 @@ namespace GameEngine
         void Start()
         {
             _id = _worldObject.Id;
-            SetLevel(_worldObject.Flags);
         }
 
-        public void SetLevel(byte newSize)
+        public static BugNestView Create(BugNestView prefab, WorldObject worldObject, bool isServer)
         {
-            if (newSize < MaxSize)
-            {
-                _size = newSize;
-                for (byte i=0; i<MaxSize; i++)
-                {
-                    _levels[i].SetActive(i == _size);
-                }
-                _rigidbody2d = _levels[_size].GetComponent<Rigidbody2D>();
-            }
-        }
-
-
-        public static GenView Create(GenView prefab, WorldObject worldObject, bool isServer)
-        {
-            var gen = Instantiate<GenView>(prefab, new Vector3(worldObject.Position.x, worldObject.Position.y),Quaternion.identity); 
+            var gen = Instantiate<BugNestView>(prefab, new Vector3(worldObject.Position.x, worldObject.Position.y),Quaternion.identity); 
             gen._worldObject = worldObject;
             gen._isServer = isServer;
             return gen;
@@ -84,7 +70,13 @@ namespace GameEngine
             // to update view here.
             _worldObject = worldObject;
 
-            SetLevel(_worldObject.Flags);
+            if(_worldObject.Flags==0)
+            {
+                _levels[0].SetActive(false);
+                _levels[1].SetActive(true);
+            }
+
+
         }
 
         void IObjectView.SetActive(bool isActive)

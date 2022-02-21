@@ -323,16 +323,9 @@ namespace GameEngine
 
                         // NPC and Generators
                         case "DandyObjectSprites_10":
-                            _objectArray.Array[x, y].type = ObjectType.BugNest;
-                            _objectArray.Array[x, y].data = 1;
-                            break;
                         case "DandyObjectSprites_11":
-                            _objectArray.Array[x, y].type = ObjectType.BugNest;
-                            _objectArray.Array[x, y].data = 2;
-                            break;
                         case "DandyObjectSprites_12":
                             _objectArray.Array[x, y].type = ObjectType.BugNest;
-                            _objectArray.Array[x, y].data = 3;
                             break;
                         case "DandyObjectSprites_13":
                             _objectArray.Array[x, y].type = ObjectType.NPCBug;

@@ -162,6 +162,7 @@ namespace GameEngine
             _rotation = Mathf.Atan2(_targetPosition.y, _targetPosition.x) - 90 * Mathf.Deg2Rad;
             _sprite.transform.rotation = Quaternion.Euler(0f, 0f, _rotation * Mathf.Rad2Deg);
 
+
             // activate key
             if (Keyboard.current.eKey.wasPressedThisFrame)
             {

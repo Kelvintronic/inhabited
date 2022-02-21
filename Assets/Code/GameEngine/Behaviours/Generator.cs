@@ -15,7 +15,7 @@ namespace GameEngine
     public class Generator : MonoBehaviour
     {
         private float _elapsedTime = 0;
-        private GenView _view;
+        private BugNestView _view;
         private Collider2D[] _overlapResult = new Collider2D[1];
 
         [Range(0f, 1f)]
@@ -31,13 +31,13 @@ namespace GameEngine
         // Start is called before the first frame update
         void Start()
         {
-            _view = GetComponent<GenView>();
+            _view = GetComponent<BugNestView>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (_view.IsServer)
+            if (_view.IsServer&&_view.IsOpen)
             {
                 _elapsedTime += Time.deltaTime;
 

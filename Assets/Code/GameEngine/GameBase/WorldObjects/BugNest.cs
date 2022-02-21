@@ -8,33 +8,45 @@ namespace GameEngine
 {
     public class BugNest : ServerWorldObject
     {
-        public const int MaxSize = 3; // number of different levels the NPC has
-        private byte _size;
+        private bool _isOpen;
+        private byte _health;
 
-        public BugNest(WorldVector position, byte size = 3) : base(position)
+        public BugNest(WorldVector position) : base(position)
         {
             _canHit = true;
             _type = ObjectType.BugNest;
-            _size = size;
+            _isOpen = true;
+            _health = 3;
  
         }
 
         public override bool OnHit()
         {
-            if (_size > 0)
+            if (_health > 0)
             {
-                _size--;
-                Debug.Log("BugNest id '" + Id + "' reduced in size to" + _size);
+                _health--;
+                Debug.Log("BugNest id '" + Id + "' reduced in size to" + _health);
             }
-            else
-                return true;
 
             return false;
         }
 
+        public override bool Update(float delta)
+        {
+            // if we have been hit and health is depleted notify client
+            if(_health==0&&_isOpen)
+            {
+                _isOpen = false;
+                _update = true;
+            }
+                
+            return base.Update(delta);
+        }
+
+
         public override void Serialize(NetDataWriter writer)
         {
-            _flags = _size;
+            _flags = _health;
             base.Serialize(writer);
         }
 

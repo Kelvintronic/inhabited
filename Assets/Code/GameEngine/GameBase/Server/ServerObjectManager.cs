@@ -248,7 +248,7 @@ namespace GameEngine
 
                 // NPCs and Generators
                 case ObjectType.BugNest:
-                    newObject = new BugNest(position, data);
+                    newObject = new BugNest(position);
                     break;
                 case ObjectType.NPCBug:
                     newObject = new NPCBug(position, this);

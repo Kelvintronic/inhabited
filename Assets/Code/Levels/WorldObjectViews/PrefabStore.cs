@@ -12,7 +12,7 @@ public class PrefabStore : MonoBehaviour
     public BombView bombObjectPrefab;
     public CashView cashObjectPrefab;
     public NPCView npcObjectPrefab;
-    public GenView genObjectPrefab;
+    public BugNestView genObjectPrefab;
     public ChestView chestObjectPrefab;
     public GenericView genericObjectPrefab;
 }

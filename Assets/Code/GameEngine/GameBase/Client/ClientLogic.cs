@@ -431,7 +431,7 @@ namespace GameEngine
                             view = npcView;
                             break;
                         case ObjectType.BugNest:
-                            var genView = GenView.Create(_prefabStore.genObjectPrefab, _cachedObjectState.worldObjects[i], _serverLogic.IsStarted);
+                            var genView = BugNestView.Create(_prefabStore.genObjectPrefab, _cachedObjectState.worldObjects[i], _serverLogic.IsStarted);
                             if (_serverLogic.IsStarted)
                             {
                                 var generator = genView.GetComponent<Generator>();

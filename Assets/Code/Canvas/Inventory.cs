@@ -39,15 +39,15 @@ public class Inventory : MonoBehaviour
         int slot = -1;
 
         // slot keys
-        if (Keyboard.current.oem1Key.wasPressedThisFrame)
+        if (Keyboard.current.digit1Key.wasPressedThisFrame)
             slot = 0;
-        else if (Keyboard.current.oem2Key.wasPressedThisFrame)
+        else if (Keyboard.current.digit2Key.wasPressedThisFrame)
             slot = 1;
-        else if (Keyboard.current.oem3Key.wasPressedThisFrame)
+        else if (Keyboard.current.digit3Key.wasPressedThisFrame)
             slot = 2;
-        else if (Keyboard.current.oem4Key.wasPressedThisFrame)
+        else if (Keyboard.current.digit4Key.wasPressedThisFrame)
             slot = 3;
-        else if (Keyboard.current.oem5Key.wasPressedThisFrame)
+        else if (Keyboard.current.digit5Key.wasPressedThisFrame)
             slot = 4;
 
         if (slot != -1)
