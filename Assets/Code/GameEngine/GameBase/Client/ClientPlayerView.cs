@@ -11,6 +11,7 @@ namespace GameEngine
         [SerializeField] private GameObject _serverProjectilePrefab;
         [SerializeField] private GameObject _clientProjectilePrefab;
         [SerializeField] private GameObject _fogOfWarCircle;
+        [SerializeField] private GameObject _childCollection;
 
         private Animator _animator;
         private const int _distanceOfSight = 6;
@@ -73,11 +74,6 @@ namespace GameEngine
            // _spriteRenderer.sprite = sprite;
         }
 
-        public byte GetPlayerId()
-        {
-            return _player.Id;
-        }
-
         public string GetStatusText()
         {
             return string.Format(
@@ -128,7 +124,10 @@ namespace GameEngine
             _ignoreCollisionTimer.UpdateAsCooldown(Time.deltaTime);
 
             if (_ignoreCollisionTimer.IsTimeElapsed)
-                gameObject.layer = 8;   // player layer
+            {
+                gameObject.layer = 8;               // restore us to player layer
+                _childCollection.SetActive(true);   // show visual player objects
+            }
 
             // Debug.Log($"[S] InputDelayTime '{_enableInputTimer.Time}'");
 
@@ -291,9 +290,10 @@ namespace GameEngine
 
         public void Spawn(float x, float y)
         {
-            gameObject.layer = 16;  // ignore collision layer
-            transform.position = new Vector2(x, y);
-            _ignoreCollisionTimer.Reset();
+            _childCollection.SetActive(false);      // hide visual player objects
+            gameObject.layer = 16;                  // move us to the ignore collision layer
+            transform.position = new Vector2(x, y); // set new location
+            _ignoreCollisionTimer.Reset();          // start the timer for restore
         }
 
         public void Hide(bool isHidden)

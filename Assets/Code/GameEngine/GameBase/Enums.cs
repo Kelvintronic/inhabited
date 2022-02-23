@@ -26,7 +26,10 @@
         DoorBlue,
         HiddenDoor,
         Chest,
-        FalseWall
+        FalseWall,
+
+        // server only objects
+        TelePort
     }
 
     public enum NPCStance

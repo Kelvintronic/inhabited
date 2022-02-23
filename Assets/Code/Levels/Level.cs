@@ -15,6 +15,7 @@ namespace GameEngine
         [SerializeField] private Tilemap mainMap;
         [SerializeField] private Tilemap objectMap;
         [SerializeField] private Tilemap debugMap;
+        [SerializeField] private GameObject[] serverChildren;
 
         private Sprite[] _layoutSpriteArray;
         private Tile[] _layoutTileArray = new Tile[20];
@@ -28,7 +29,7 @@ namespace GameEngine
         private float _yMax;
         private float _yMin;
 
-        private ClientLogic _clientLogic;
+       // private ClientLogic _clientLogic;
         private ServerLogic _serverLogic;
 
         private bool _debugVisible = false;
@@ -37,7 +38,7 @@ namespace GameEngine
         private void Awake()
         {
          //   _clientLogic = GameObject.FindObjectOfType<ClientLogic>();
-         //   _serverLogic = GameObject.FindObjectOfType<ServerLogic>();
+            _serverLogic = GameObject.FindObjectOfType<ServerLogic>();
             objectMap.gameObject.SetActive(false); // hide the object layer
             _layoutSpriteArray = Resources.LoadAll<Sprite>("LayoutSprites");
 
@@ -55,7 +56,17 @@ namespace GameEngine
         // Start is called before the first frame update
         void Start()
         {
-         //   mainMap = GetComponent<Tilemap>();
+            // if we have not been created by the server, disable all server children
+            // server children are prefabs placed within a level that should only be active
+            // in the server instance. Generally these prefabs send notifications locally to
+            // the serverlogic
+       /*     if(serverChildren.Length>0 && !_serverLogic.IsStarted)
+            {
+                for(int i=0; i < serverChildren.Length; i++)
+                {
+                    serverChildren[i].SetActive(false);
+                }
+            }*/
         }
 
         public static Level Create(Level prefab)

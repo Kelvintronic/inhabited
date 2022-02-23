@@ -11,9 +11,6 @@ using GameEngine.Search;
 
 namespace GameEngine
 {
-
-
-
     public interface ILevelData
     {
         MapArray GetMapArray();
@@ -447,5 +444,12 @@ namespace GameEngine
                 Debug.Log("[S] Object not found at position: x=" + position.x + " y=" +position.y);
 
         }
+
+        // reacts to a Player hitting a teleport
+        public void OnTriggerTeleport(byte playerid, WorldVector destination)
+        {
+            _playerManager.TelePortPlayer(playerid, destination);
+        }
+
     }
 }

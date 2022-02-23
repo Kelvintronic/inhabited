@@ -126,16 +126,21 @@ namespace GameEngine
         public bool ResurrectNextDeadPlayer(WorldVector position)
         {
             // TODO: Add time of death and resurrect longest dead player
-            foreach(ServerPlayer player in this)
+            foreach (ServerPlayer player in this)
             {
-                if(!player.IsAlive)
+                if (!player.IsAlive)
                 {
                     player.AddHealth(100);
-                    _netSender.SendToAll(new SpawnPacket { PlayerId = player.Id, x=position.x, y=position.y });
+                    _netSender.SendToAll(new SpawnPacket { PlayerId = player.Id, x = position.x, y = position.y });
                     return true;
                 }
             }
             return false;
+        }
+
+        public void TelePortPlayer(byte playerId, WorldVector position)
+        {
+            _netSender.SendToAll(new SpawnPacket { PlayerId = playerId, x=position.x, y=position.y });
         }
     }
 }
