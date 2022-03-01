@@ -15626,6 +15626,8 @@ MonoBehaviour:
     type: 3}
   genericObjectPrefab: {fileID: 1337642914753488404, guid: 43d96f26a44e0b544bf26cc2d8c5fda3,
     type: 3}
+  conveyorObjectPrefab: {fileID: 1602752973195259501, guid: c0ee8cc1500a4324aa8da3c2aeebb40a,
+    type: 3}
 --- !u!1 &1736511069
 GameObject:
   m_ObjectHideFlags: 0

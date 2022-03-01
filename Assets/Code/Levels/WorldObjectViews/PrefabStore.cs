@@ -15,4 +15,5 @@ public class PrefabStore : MonoBehaviour
     public BugNestView genObjectPrefab;
     public ChestView chestObjectPrefab;
     public GenericView genericObjectPrefab;
+    public ConveyorView conveyorObjectPrefab;
 }

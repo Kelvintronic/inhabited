@@ -17,7 +17,7 @@ namespace GameEngine
         protected float _rotation;
         protected bool _active;
         protected bool _canHit = false;
-        protected bool _isInteractable = false;   // true if to be placed on the interactable layer only
+        protected ObjectLayer _layer = ObjectLayer.Main;
 
         // currently only used for doors
         protected int _width = 1;
@@ -34,7 +34,7 @@ namespace GameEngine
         public bool IsActive => _active;
         public ObjectType Type => _type;
         public bool CanHit => _canHit;
-        public bool IsInteractable => _isInteractable;
+        public ObjectLayer Layer => _layer;
         public int Width => _width;
         public bool IsHorizontal => _isHorizontal;
 
@@ -96,7 +96,7 @@ namespace GameEngine
             writer.Put(_rotation);
             writer.Put(_active);
             writer.Put(_canHit);
-            writer.Put(_isInteractable);
+            writer.Put((int)_layer);
             writer.Put(_width);
             writer.Put(_isHorizontal);
             writer.Put(_flags);
@@ -112,7 +112,7 @@ namespace GameEngine
             _rotation = reader.GetFloat();
             _active = reader.GetBool();
             _canHit = reader.GetBool();
-            _isInteractable = reader.GetBool();
+            _layer = (ObjectLayer)reader.GetInt();
             _width = reader.GetInt();
             _isHorizontal = reader.GetBool();
             _flags = reader.GetByte();

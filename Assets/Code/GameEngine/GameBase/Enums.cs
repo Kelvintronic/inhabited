@@ -25,13 +25,22 @@
         DoorGreen,
         DoorBlue,
         HiddenDoor,
-        Chest,
         FalseWall,
 
-        // server only objects
-        TelePort
-    }
+        // Container layer objects
+        Chest,
 
+        // Functional layer objects
+        Conveyor
+    }
+     public enum ObjectLayer
+    {
+        Main,           // Main level object and NPC layer
+
+        // objects not on Main can be walked over by NPCs
+        Container,      // Container Layer (for chests and searchable objects)
+        Funcion         // Objects that are static and act on players
+    }
     public enum NPCStance
     {
         Aggressive,

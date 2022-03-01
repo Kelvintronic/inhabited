@@ -444,6 +444,9 @@ namespace GameEngine
                             ((ChestView)view).ObjectUnlockEvent += OnObjectUnlock;
                             ((ChestView)view).TakeItemEvent += OnTakeItem;
                             break;
+                        case ObjectType.Conveyor:
+                            view = ConveyorView.Create(_prefabStore.conveyorObjectPrefab, _cachedObjectState.worldObjects[i], _serverLogic.IsStarted);
+                            break;
                     }
                     if (view != null)
                         _objectManager.AddWorldObject(_cachedObjectState.worldObjects[i], view);

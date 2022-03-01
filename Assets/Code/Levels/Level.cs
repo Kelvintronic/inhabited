@@ -347,6 +347,41 @@ namespace GameEngine
                         case "DandyObjectSprites_15":
                             _objectArray.Array[x, y].type = ObjectType.NPCMercenary;
                             break;
+
+
+                        // Functional Layer
+                        case "ArrowTiles_0":
+                            _objectArray.Array[x, y].type = ObjectType.Conveyor;
+                            _objectArray.Array[x, y].data = 0;
+                            break;
+                        case "ArrowTiles_1":
+                            _objectArray.Array[x, y].type = ObjectType.Conveyor;
+                            _objectArray.Array[x, y].data = 315;
+                            break;
+                        case "ArrowTiles_2":
+                            _objectArray.Array[x, y].type = ObjectType.Conveyor;
+                            _objectArray.Array[x, y].data = 270;
+                            break;
+                        case "ArrowTiles_3":
+                            _objectArray.Array[x, y].type = ObjectType.Conveyor;
+                            _objectArray.Array[x, y].data = 225;
+                            break;
+                        case "ArrowTiles_4":
+                            _objectArray.Array[x, y].type = ObjectType.Conveyor;
+                            _objectArray.Array[x, y].data = 180;
+                            break;
+                        case "ArrowTiles_5":
+                            _objectArray.Array[x, y].type = ObjectType.Conveyor;
+                            _objectArray.Array[x, y].data = 135;
+                            break;
+                        case "ArrowTiles_6":
+                            _objectArray.Array[x, y].type = ObjectType.Conveyor;
+                            _objectArray.Array[x, y].data = 90;
+                            break;
+                        case "ArrowTiles_7":
+                            _objectArray.Array[x, y].type = ObjectType.Conveyor;
+                            _objectArray.Array[x, y].data = 45;
+                            break;
                     }
                 }
             return _objectArray;
@@ -365,7 +400,7 @@ namespace GameEngine
     public struct MapCell
     {
         public ObjectType type;
-        public byte data;
+        public int data;
         public int id;
 
         public static MapCell Empty { get { return new MapCell { type = ObjectType.None, data = 0, id = -1 }; } }

@@ -16,7 +16,7 @@ namespace GameEngine
         public Chest(WorldVector position) : base(position)
         {
             _canHit = false;
-            _isInteractable = true;
+            _layer = ObjectLayer.Container;
             _type = ObjectType.Chest;
             _data = new ChestData();
         }

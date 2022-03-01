@@ -38,9 +38,11 @@ namespace GameEngine
 
         public MapArray MapArray => _mapArray;
 
-        // interactables dictionary
-        // items that are classed interactable are referenced in this instead of _mapArray
-        private Dictionary<VectorInt, int> _interactables;
+        // containers and functionals are not referenced in _mapArray
+        // meaning NPCs can walk over them and other objects can be placed on top
+        // TODO: Make objects dropped ontop of containers be placed within
+        private Dictionary<VectorInt, int> _containers;
+        private Dictionary<VectorInt, int> _functionals;
 
         public ServerObjectManager(INetSender netSender, IEnumerable<BasePlayer> playerList)
         {
@@ -48,7 +50,8 @@ namespace GameEngine
             _playerList = playerList;
 
             _worldObjects = new Dictionary<int, ServerWorldObject>();
-            _interactables = new Dictionary<VectorInt, int>();
+            _containers = new Dictionary<VectorInt, int>();
+            _functionals = new Dictionary<VectorInt, int>();
             _updates = new Queue<int>();
         }
 
@@ -75,8 +78,8 @@ namespace GameEngine
                         ((ServerWorldObject)nwo).DestroyNotification();
 
                 }
-                if (wo.IsInteractable)
-                    _interactables.Remove(wo.PositionInt);                  // remove interactable reference
+                if (wo.Layer==ObjectLayer.Container)
+                    _containers.Remove(wo.PositionInt);                  // remove interactable reference
                 _worldObjects.Remove(id);                                   // remove object
                 _netSender.SendToAll(new RemoveObjectPacket { id = id });   // inform clients
             }
@@ -102,7 +105,8 @@ namespace GameEngine
         public void Reset(ILevelData levelData)
         {
             _worldObjects.Clear();
-            _interactables.Clear();
+            _containers.Clear();
+            _functionals.Clear();
             _updates.Clear();
             _levelData = levelData;
 
@@ -125,16 +129,27 @@ namespace GameEngine
 
         public bool AddWorldObject(ServerWorldObject worldObject)
         {
-
-            if (worldObject.IsInteractable) // add interactables reference
+            // TODO:    Add block movement variable to allow some functionals to block movement of NPCs
+            //          Will probably be easier to have layer booleans for each layer
+            if (worldObject.Layer == ObjectLayer.Container) // add container reference
             {
                 // Don't add if there is an object already at the location
-                if (_interactables.ContainsKey(worldObject.PositionInt))
+                if (_containers.ContainsKey(worldObject.PositionInt))
                     return false;
 
                 worldObject.SnapToGrid();
 
-                _interactables.Add(worldObject.PositionInt, worldObject.Id);
+                _containers.Add(worldObject.PositionInt, worldObject.Id);
+            }
+            else if(worldObject.Layer== ObjectLayer.Funcion)
+            {
+                // Don't add if there is an object already at the location
+                if (_functionals.ContainsKey(worldObject.PositionInt))
+                    return false;
+
+                worldObject.SnapToGrid();
+
+                _functionals.Add(worldObject.PositionInt, worldObject.Id);
             }
             else // add map array reference(s)
             {
@@ -209,7 +224,7 @@ namespace GameEngine
             _netSender.SendToPeer(peer,PacketType.WorldObjectState, _worldObjectState);
         }
 
-        public ServerWorldObject CreateWorldObject(ObjectType type, WorldVector position, int width = 1, bool isHorizontal = true, byte data = 0)
+        public ServerWorldObject CreateWorldObject(ObjectType type, WorldVector position, int width = 1, bool isHorizontal = true, int data = 0)
         {
             ServerWorldObject newObject = null;
             switch (type)
@@ -261,6 +276,9 @@ namespace GameEngine
                     break;
                 case ObjectType.Chest:
                     newObject = new Chest(position);
+                    break;
+                case ObjectType.Conveyor:
+                    newObject = new Conveyor(position, data);
                     break;
             }
             if(newObject!=null)

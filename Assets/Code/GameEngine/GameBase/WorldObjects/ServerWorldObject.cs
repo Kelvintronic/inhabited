@@ -109,7 +109,7 @@ namespace GameEngine
         /// </summary>
         public virtual void Destroy()
         {
-            if (_isInteractable)
+            if (_layer!=ObjectLayer.Main)
                 return;
 
             var celPos = _mapArray.GetCellVector(_position);

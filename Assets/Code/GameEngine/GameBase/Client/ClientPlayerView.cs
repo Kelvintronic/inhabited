@@ -254,7 +254,7 @@ namespace GameEngine
 
         public void SetPositionCorrection(Vector2 delta)
         {
-            _serverVelocity = delta;
+            _serverVelocity += delta;
         }
         public GameObject Shoot(bool isServer)
         {
