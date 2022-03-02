@@ -94,4 +94,10 @@ public class GenericView : MonoBehaviour, IObjectView
     {
         gameObject.SetActive(isActive);
     }
+
+    GameObject IObjectView.GetGameObject()
+    {
+        return gameObject;
+    }
+
 }

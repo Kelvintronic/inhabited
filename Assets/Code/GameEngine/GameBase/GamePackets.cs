@@ -13,7 +13,6 @@ namespace GameEngine
         Spawn,
         ServerState,
         Serialized,
-        Shoot,
         Message,
         WorldObjectState,
         NewMap
@@ -108,6 +107,15 @@ namespace GameEngine
 
     }
 
+    public class ShootPacket
+    {
+        public int ShooterId { get; set; }
+        public bool IsNPCShooter { get; set; }
+        public float Direction { get; set; }
+        public int DamageFactor { get; set; }
+    }
+
+
     //Manual serializable packets
 
     [Flags]
@@ -120,29 +128,22 @@ namespace GameEngine
         Fire = 1 << 5
     }
 
-    public struct ShootPacket : INetSerializable
-    {
-        public byte FromPlayer;
-        public ushort CommandId;
-        public WorldVector Direction;
-        public ushort ServerTick;
-        
-        public void Serialize(NetDataWriter writer)
+ /*       public void Serialize(NetDataWriter writer)
         {
-            writer.Put(FromPlayer);
-            writer.Put(CommandId);
+            writer.Put(ShooterId);
+            writer.Put(IsNPCShooter);
             writer.Put(Direction);
-            writer.Put(ServerTick);
+            writer.Put(DamageFactor);
         }
 
         public void Deserialize(NetDataReader reader)
         {
-            FromPlayer = reader.GetByte();
-            CommandId = reader.GetUShort();
-            Direction = reader.GetWorldVector();
-            ServerTick = reader.GetUShort();
+            ShooterId = reader.GetInt();
+            IsNPCShooter = reader.GetBool();
+            Direction = reader.GetFloat();
+            DamageFactor = reader.GetInt();
         }
-    }
+    }*/
     
     public struct PlayerInputPacket : INetSerializable
     {

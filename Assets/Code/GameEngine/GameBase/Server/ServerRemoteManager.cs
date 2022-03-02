@@ -128,17 +128,19 @@ namespace GameEngine
             {
                 if (player.ApplyShoot())
                 {
-                    WorldVector dir = new WorldVector(MathFloat.Cos(player.Rotation), MathFloat.Sin(player.Rotation));
+                    //WorldVector dir = new WorldVector(MathFloat.Cos(player.Rotation), MathFloat.Sin(player.Rotation));
 
                     ShootPacket sp = new ShootPacket
                     {
-                        FromPlayer = player.Id,
-                        CommandId = player.LastProcessedCommandId,
-                        ServerTick = _serverTick,
-                        Direction = dir
+                        ShooterId = player.Id,
+                        IsNPCShooter = false,
+                        Direction = player.Rotation,
+                        DamageFactor = 1,
+                      //  CommandId = player.LastProcessedCommandId,
+                        //ServerTick = _serverTick
                     };
 
-                    _netManager.SendToAll(WriteSerializable(PacketType.Shoot, sp), DeliveryMethod.ReliableUnordered);
+                    SendToAll(sp);
                 }
             }
 

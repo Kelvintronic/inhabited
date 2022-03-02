@@ -95,4 +95,9 @@ public class KeyView : MonoBehaviour, IObjectView, IInventoryItem
         gameObject.SetActive(isActive);
     }
 
+    GameObject IObjectView.GetGameObject()
+    {
+        return gameObject;
+    }
+
 }

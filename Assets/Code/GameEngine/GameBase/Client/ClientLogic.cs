@@ -49,7 +49,6 @@ namespace GameEngine
         private NetPacketProcessor _packetProcessor;
 
         private ServerState _cachedServerState;
-        private ShootPacket _cachedShootData;
         private WorldObjectState _cachedObjectState;
         private ushort _lastServerTick;
         private NetPeer _server;
@@ -73,7 +72,6 @@ namespace GameEngine
             Random r = new Random();
             _cachedServerState = new ServerState();
             _cachedObjectState = new WorldObjectState();
-            _cachedShootData = new ShootPacket();
             LogicTimer = new LogicTimer(OnLogicUpdate);
             _writer = new NetDataWriter();
             _playerManager = new ClientPlayerManager(this);
@@ -96,6 +94,7 @@ namespace GameEngine
             _packetProcessor.SubscribeReusable<ReleaseObjectLockPacket>(OnObjectUnlockPacket);
             _packetProcessor.SubscribeReusable<PlayerPositionCorrection>(OnPlayerPositionCorrection);
             _packetProcessor.SubscribeReusable<RevealAreaPacket>(OnRevealAreaPacket);
+            _packetProcessor.SubscribeReusable<ShootPacket>(OnShootPacket);
 
 
 
@@ -462,6 +461,33 @@ namespace GameEngine
                 Debug.Log($"[C] Player quit: {player.Name}");
         }
 
+        private void OnShootPacket(ShootPacket shootData)
+        {
+            GameObject gameObject = null;
+
+            // is shot from an NPC or a player?
+            if (shootData.IsNPCShooter)
+            {
+                var objectView = _objectManager.GetViewById(shootData.ShooterId);
+                if (objectView != null)
+                    gameObject = objectView.GetGameObject();
+            }
+            else
+            {
+                var playerView = _playerManager.GetViewById(shootData.ShooterId);
+                if (playerView != null)
+                    gameObject = playerView.GetGameObject();
+            }
+
+            if (gameObject != null)
+            {
+                // does the gameObject have a gun component?
+                var gun = gameObject.GetComponent<Gun>();
+                if (gun != null)
+                    gun.Shoot(IsServer, shootData, _serverLogic.OnBoltHit);
+            }
+        }
+
         public void SendPacketSerializable<T>(PacketType type, T packet, DeliveryMethod deliveryMethod) where T : INetSerializable
         {
             if (_server == null)
@@ -542,32 +568,9 @@ namespace GameEngine
                 case PacketType.Serialized:
                     _packetProcessor.ReadAllPackets(reader);
                     break;
-                case PacketType.Shoot:
-                    _cachedShootData.Deserialize(reader);
-                    OnShoot();
-                    break;
                 default:
                     Debug.Log("Unhandled packet: " + pt);
                     break;
-            }
-        }
-
-        private void OnShoot()
-        {
-            var playerView = _playerManager.GetViewById(_cachedShootData.FromPlayer);
-
-            // if we are the server spawn the ServerShot prefab
-            if (_serverLogic.IsStarted)
-            {
-                var bolt = playerView.Shoot(true);
-                var boltScript = bolt.GetComponent<ServerBolt>();
-                boltScript.playerId = playerView.GetId();
-                boltScript.hitHandler += _serverLogic.OnBoltHit;
-            }
-            else
-            // else spawn the client prefab
-            {
-                playerView.Shoot(false);
             }
         }
 

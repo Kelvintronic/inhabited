@@ -92,4 +92,11 @@ public class Sensor : MonoBehaviour
         _collider.radius = radius;
     }
 
+    public float GetRange()
+    {
+        if (_collider != null)
+            return _collider.radius;
+        return 0.0f;
+    }
+
 }

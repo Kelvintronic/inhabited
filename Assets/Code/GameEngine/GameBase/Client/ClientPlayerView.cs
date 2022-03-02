@@ -28,7 +28,7 @@ namespace GameEngine
         private bool _fire;
 
         private GameTimer _enableInputTimer = new GameTimer(0.2f);
-        private GameTimer _ignoreCollisionTimer = new GameTimer(0.2f);
+        private GameTimer _ignoreCollisionTimer = new GameTimer(0.1f);
 
         private ClientPlayer _player;
 
@@ -256,19 +256,6 @@ namespace GameEngine
         {
             _serverVelocity += delta;
         }
-        public GameObject Shoot(bool isServer)
-        {
-            var shotSpawnRot = _sprite.transform.rotation;
-            var shotSpawnPos = _sprite.transform.position + (shotSpawnRot * Vector3.up);
-
-            GetComponent<AudioSource>().Play();
-
-            if (isServer)
-                return Instantiate(_serverProjectilePrefab, shotSpawnPos, shotSpawnRot);
-            else
-                return Instantiate(_clientProjectilePrefab, shotSpawnPos, shotSpawnRot);
-
-        }
 
         public byte GetId()
         {
@@ -305,6 +292,12 @@ namespace GameEngine
         {
             gameObject.SetActive(bActive);
         }
+
+        GameObject IPlayerView.GetGameObject()
+        {
+            return gameObject;
+        }
+
 
     }
 }

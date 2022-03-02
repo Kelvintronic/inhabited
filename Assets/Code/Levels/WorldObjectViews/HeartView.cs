@@ -71,4 +71,9 @@ public class HeartView : MonoBehaviour, IObjectView
         gameObject.SetActive(isActive);
     }
 
+    GameObject IObjectView.GetGameObject()
+    {
+        return gameObject;
+    }
+
 }

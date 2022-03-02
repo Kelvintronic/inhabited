@@ -330,7 +330,18 @@ namespace GameEngine
         // reacts to a ServerBolt hit
         public void OnBoltHit(object sender, ServerBoltArg e)
         {
-            var worldObject=_objectManager.GetById(e.objectId);
+            if(e.isTargetPlayer)
+            {
+                var player = _playerManager.GetById(e.targetId);
+                if (player != null)
+                    player.SubtractHealth((byte)(e.damageFactor * 2 + 2));
+
+                // Note: No score for friendly fire
+
+                return;
+            }
+
+            var worldObject=_objectManager.GetById(e.targetId);
 
             if (worldObject == null)
                 return;
@@ -391,6 +402,21 @@ namespace GameEngine
             if (worldObject == null)
                 return;
 
+            if (e.ranged)
+            {
+                ShootPacket sp = new ShootPacket
+                {
+                    ShooterId = e.attackerId,
+                    IsNPCShooter = true,
+                    Direction = worldObject.Rotation,
+                    DamageFactor = 1,
+                };
+
+                _remoteManager.SendToAll(sp);
+                return;
+            }
+
+
             // Get score factor
             uint damageFactor = 0;
             switch (worldObject.Type)
@@ -410,7 +436,8 @@ namespace GameEngine
             if(player!=null)
                 player.SubtractHealth((byte)(damageFactor * 2 + 2));
         }
-        
+
+
         // reacts to a Monster eye movement
         public void OnMonsterWatching(object sender, EyesOnEventArgs e)
         {

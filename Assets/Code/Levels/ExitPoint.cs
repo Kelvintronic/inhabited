@@ -59,4 +59,9 @@ public class ExitPoint : MonoBehaviour, IObjectView
     {
         gameObject.SetActive(false);
     }
+
+    GameObject IObjectView.GetGameObject()
+    {
+        return gameObject;
+    }
 }

@@ -59,7 +59,7 @@ namespace GameEngine
             }
         }
 
-    public static NPCView Create(NPCView prefab, WorldObject worldObject, bool isServer)
+        public static NPCView Create(NPCView prefab, WorldObject worldObject, bool isServer)
         {
             var npc = Instantiate<NPCView>(prefab, new Vector3(worldObject.Position.x, worldObject.Position.y), Quaternion.identity);
             npc._worldObject = worldObject;
@@ -97,7 +97,7 @@ namespace GameEngine
             // to update view here.
             _worldObject = worldObject;
 
-            _views[_viewIndex].transform.rotation = Quaternion.Euler(0f, 0f, _worldObject.Rotation * Mathf.Rad2Deg);
+            this.transform.rotation = Quaternion.Euler(0f, 0f, _worldObject.Rotation * Mathf.Rad2Deg);
 
             if (_monster != null)
                 _monster.UpdatePosition(_worldObject.Position);
@@ -107,5 +107,11 @@ namespace GameEngine
         {
             gameObject.SetActive(isActive);
         }
+
+        GameObject IObjectView.GetGameObject()
+        {
+            return gameObject;
+        }
+
     }
 }

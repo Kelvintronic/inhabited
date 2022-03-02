@@ -55,20 +55,6 @@ namespace GameEngine
             Destroy(gameObject);
         }
 
-        public GameObject Shoot(bool isServer)
-        {
-            var shotSpawnRot = _arrow.transform.rotation; 
-            var shotSpawnPos = _arrow.transform.position + (shotSpawnRot * Vector3.up);
-
-            GetComponent<AudioSource>().Play();
-
-            if(isServer)
-                return Instantiate(_serverProjectilePrefab, shotSpawnPos, shotSpawnRot);
-            else
-                return Instantiate(_clientProjectilePrefab, shotSpawnPos, shotSpawnRot);
-
-        }
-
         void IPlayerView.SetActive(bool bActive)
         {
             gameObject.SetActive(bActive);
@@ -78,5 +64,11 @@ namespace GameEngine
         {
             return _player.Id;
         }
+
+        GameObject IPlayerView.GetGameObject()
+        {
+            return gameObject;
+        }
+
     }
 }

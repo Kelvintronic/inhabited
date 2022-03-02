@@ -21,7 +21,7 @@ namespace GameEngine
 
     public class ClientPlayerManager : BasePlayerManager
     {
-        private readonly Dictionary<byte, PlayerHandler> _players;
+        private readonly Dictionary<int, PlayerHandler> _players;
         private readonly ClientLogic _clientLogic;
         private ClientPlayer _clientPlayer;
 
@@ -31,7 +31,7 @@ namespace GameEngine
         public ClientPlayerManager(ClientLogic clientLogic)
         {
             _clientLogic = clientLogic;
-            _players = new Dictionary<byte, PlayerHandler>();
+            _players = new Dictionary<int, PlayerHandler>();
         }
 
         public override IEnumerator<BasePlayer> GetEnumerator()
@@ -76,17 +76,17 @@ namespace GameEngine
             }
         }*/
 
-        public BasePlayer GetById(byte id)
+        public BasePlayer GetById(int id)
         {
             return _players.TryGetValue(id, out var ph) ? ph.Player : null;
         }
 
-        public IPlayerView GetViewById(byte id)
+        public IPlayerView GetViewById(int id)
         {
             return _players.TryGetValue(id, out var ph) ? ph.View : null;
         }
 
-        public BasePlayer RemovePlayer(byte id)
+        public BasePlayer RemovePlayer(int id)
         {
             if (_players.TryGetValue(id, out var handler))
             {

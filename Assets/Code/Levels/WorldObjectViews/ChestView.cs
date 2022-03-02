@@ -150,4 +150,10 @@ public class ChestView : MonoBehaviour, IObjectView
         gameObject.SetActive(isActive);
     }
 
+    GameObject IObjectView.GetGameObject()
+    {
+        return gameObject;
+    }
+
+
 }

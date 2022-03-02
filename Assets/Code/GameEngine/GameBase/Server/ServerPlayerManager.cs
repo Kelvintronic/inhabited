@@ -38,7 +38,7 @@ namespace GameEngine
             return inactivePlayers;
         }
 
-        public ServerPlayer GetById(byte id)
+        public ServerPlayer GetById(int id)
         {
             for (int i = 0; i < MaxPlayers; i++)
             {

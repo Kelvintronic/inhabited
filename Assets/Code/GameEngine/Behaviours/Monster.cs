@@ -11,6 +11,7 @@ namespace GameEngine
     {
         public byte playerId;
         public int attackerId;
+        public bool ranged;
     }
 
     public class EyesOnEventArgs : EventArgs
@@ -31,6 +32,8 @@ namespace GameEngine
         private GameTimer _intentTimer = new GameTimer(0.1f);
         private GameTimer _noPathIdleTimer = new GameTimer(1.0f);
 
+        private WorldVector _target;
+        private bool _targetValid = false;
         private Vector2 _position;
 
         private NPCView _NPC;
@@ -39,6 +42,10 @@ namespace GameEngine
         private float _timer;
 
         public bool IsMoving { get => _buffer.Count>1; }
+        public bool HasTarget => _targetValid;
+        public WorldVector Target => _target;
+
+        public float Range => _sensor.GetRange();
 
         public float SensorRadius
         {
@@ -112,6 +119,7 @@ namespace GameEngine
 
             if (closestPlayer.id == -1)
             {
+                _targetValid = false;
                 return;
             }
 
@@ -141,13 +149,27 @@ namespace GameEngine
                 Attack.Invoke(this, new AttackEventArgs
                 {
                     playerId = (byte)closestPlayer.id,
-                    attackerId = _NPC.Id
+                    attackerId = _NPC.Id,
+                    ranged = false
                 });
             }
         }
 
+        public void Shoot()
+        {
+            if (Attack != null)
+            {
+                Attack.Invoke(this, new AttackEventArgs
+                {
+                    attackerId = _NPC.Id,
+                    ranged = true
+                });
+            }
+        }
         private void SetEyesOn(WorldVector target)
         {
+            _target = target;
+            _targetValid = true;
             if (EyesOn != null)
             {
                 EyesOn.Invoke(this, new EyesOnEventArgs

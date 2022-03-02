@@ -9,13 +9,16 @@ namespace GameEngine
 
     public class ServerBoltArg : EventArgs
     {
-        public byte playerId;
-        public int objectId;
+        // if player Id == -1 then targetId is not a player
+        public int playerId;
+        public int targetId;
+        public bool isTargetPlayer;
+        public int damageFactor;
     }
     public class ServerBolt : MonoBehaviour
     {
-        public byte playerId;
-
+        public int playerId; // set to -1 for non-player bolt
+        public int damageFactor = 1;
         public event EventHandler<ServerBoltArg> hitHandler;
 
         void Start()
@@ -33,8 +36,14 @@ namespace GameEngine
             else if (other.CompareTag("Player"))
             {
                 var playerView = other.GetComponentInParent<IPlayerView>();
-
+                if (playerView != null)
+                {
+                    var e = new ServerBoltArg { playerId = this.playerId, targetId = playerView.GetId(),
+                                                isTargetPlayer = true, damageFactor = this.damageFactor };
+                    hitHandler.Invoke(this, e);
+                }
                 Debug.Log(OwnerInfo() + gameObject.name + " hit player id '" + playerView.GetId() + "'");
+                Destroy(gameObject);
             }
             else
             {
@@ -42,7 +51,8 @@ namespace GameEngine
 
                 if(objectView!=null)
                 {
-                    var e = new ServerBoltArg { playerId = this.playerId,objectId = objectView.GetId() };
+                    var e = new ServerBoltArg { playerId = this.playerId,targetId = objectView.GetId(), 
+                                                isTargetPlayer = false, damageFactor = this.damageFactor };
                     hitHandler.Invoke(this, e);
                 }
                 Debug.Log(OwnerInfo() + gameObject.name + " hit something tagged '" + other.tag + "'");

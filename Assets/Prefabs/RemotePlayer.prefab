@@ -103,6 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2523512458992667212}
   - component: {fileID: 8020174154331408283}
+  - component: {fileID: 1682934958773100849}
   - component: {fileID: 8481599704110943286}
   - component: {fileID: 1074480284548382893}
   - component: {fileID: 2387640438938704939}
@@ -149,6 +150,22 @@ MonoBehaviour:
   _clientProjectilePrefab: {fileID: 100000, guid: f4ec271e525e14ca9927a07e6a2e153d,
     type: 3}
   _handleText: {fileID: 6307328831283553897}
+--- !u!114 &1682934958773100849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5299486022196019892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b2a0b437d7185d4eb43fc6a3e56b908, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _serverProjectilePrefab: {fileID: 100000, guid: f8ec7aea4e6bb514aa9b0002e104aad6,
+    type: 3}
+  _clientProjectilePrefab: {fileID: 100000, guid: f4ec271e525e14ca9927a07e6a2e153d,
+    type: 3}
 --- !u!212 &8481599704110943286
 SpriteRenderer:
   m_ObjectHideFlags: 0

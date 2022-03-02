@@ -82,4 +82,10 @@ public class HealthView : MonoBehaviour, IObjectView, IInventoryItem
         if (playerView != null)
             playerView.PickupObject(_worldObject.Id);
     }
+
+    GameObject IObjectView.GetGameObject()
+    {
+        return gameObject;
+    }
+
 }

@@ -93,4 +93,10 @@ public class DoorView : MonoBehaviour, IObjectView
         gameObject.SetActive(isActive);
     }
 
+    GameObject IObjectView.GetGameObject()
+    {
+        return gameObject;
+    }
+
+
 }

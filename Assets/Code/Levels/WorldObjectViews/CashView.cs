@@ -76,4 +76,10 @@ public class CashView : MonoBehaviour, IObjectView
         if (playerView != null)
             playerView.PickupObject(_worldObject.Id);
     }
+
+    GameObject IObjectView.GetGameObject()
+    {
+        return gameObject;
+    }
+
 }

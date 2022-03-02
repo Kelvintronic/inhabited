@@ -5,14 +5,11 @@ namespace GameEngine
     public interface IPlayerView
     {
         void Destroy();
-
-        GameObject Shoot(bool isServer);
+        void SetActive(bool bActive);
+        byte GetId();
+        GameObject GetGameObject();
 
         WorldVector GetActualPosition();
-
-        byte GetId();
-
-        void SetActive(bool bActive);
 
     }
 
@@ -20,9 +17,11 @@ namespace GameEngine
     {
         void Destroy();
         void SetActive(bool isActive);
-        void Update(WorldObject worldObject, ushort tick);
-        ObjectType GetObjectType();
         int GetId();
+        ObjectType GetObjectType();
+
+        void Update(WorldObject worldObject, ushort tick);
+        GameObject GetGameObject();
 
         /// <summary>
         /// Server activation method. This method should only be called by 

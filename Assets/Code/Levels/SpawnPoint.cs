@@ -60,4 +60,10 @@ public class SpawnPoint : MonoBehaviour, IObjectView
         gameObject.SetActive(false);
     }
 
+    GameObject IObjectView.GetGameObject()
+    {
+        return gameObject;
+    }
+
+
 }
