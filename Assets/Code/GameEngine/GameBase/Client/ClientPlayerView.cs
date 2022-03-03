@@ -165,7 +165,7 @@ namespace GameEngine
             // activate key
             if (Keyboard.current.eKey.wasPressedThisFrame)
             {
-                RaycastHit2D hit = Physics2D.Raycast(_rigidbody2d.position, _lookDirection, 1.5f, LayerMask.GetMask("Interactables"));
+                RaycastHit2D hit = Physics2D.Raycast(_rigidbody2d.position, _lookDirection, 1.5f, LayerMask.GetMask("InteractObjects"));
                 if (hit.collider != null)
                 {
                     Debug.Log("Raycast has hit the object " + hit.collider.gameObject);

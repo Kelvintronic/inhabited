@@ -52,7 +52,7 @@ namespace GameEngine
                 {
                     Vector2 lookDirection = this.transform.rotation * Vector2.up;
                     Vector2 startPosition = new Vector2(_monster.transform.position.x, _monster.transform.position.y) + lookDirection;
-                    RaycastHit2D hit = Physics2D.Raycast(startPosition, lookDirection, _monster.Range, LayerMask.GetMask("Player","NPC","Default"));
+                    RaycastHit2D hit = Physics2D.Raycast(startPosition, lookDirection, _monster.Range, LayerMask.GetMask("Player","Objects","NPCObjects","InteractObjects","Default"));
                     if (hit.collider != null)
                     {
                         Debug.Log("Raycast has hit the object " + hit.collider.gameObject);

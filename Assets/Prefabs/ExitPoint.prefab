@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8209994584016310774}
   - component: {fileID: 1002983052545922218}
   - component: {fileID: 5026359573430637127}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: ExitPoint
   m_TagString: Exit
   m_Icon: {fileID: 0}

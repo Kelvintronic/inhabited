@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3183517637816633781}
   - component: {fileID: 61097664346543728}
   - component: {fileID: 224964073351571922}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: ContentScroller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3133823685408797521}
   - component: {fileID: 708749880191041140}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: ChestClosed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   m_Component:
   - component: {fileID: 637116994895039527}
   - component: {fileID: 1279919115851184217}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: ChestOpen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 3753118842072903679}
   - component: {fileID: 7432393482412015357}
   - component: {fileID: 5091244820917094463}
-  m_Layer: 10
+  m_Layer: 11
   m_Name: Chest
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -388,10 +388,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6301619932887495280}
     m_Modifications:
+    - target: {fileID: 4832662641190232330, guid: 84a5300a04248c1459e8e34d41395a21,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4832662641784744260, guid: 84a5300a04248c1459e8e34d41395a21,
         type: 3}
       propertyPath: m_Name
       value: InventorySlot (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832662641784744260, guid: 84a5300a04248c1459e8e34d41395a21,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4832662641784744261, guid: 84a5300a04248c1459e8e34d41395a21,
         type: 3}
@@ -498,6 +508,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8010719177794363610, guid: 84a5300a04248c1459e8e34d41395a21,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84a5300a04248c1459e8e34d41395a21, type: 3}
 --- !u!224 &4684282274417116289 stripped
@@ -525,10 +540,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6301619932887495280}
     m_Modifications:
+    - target: {fileID: 4832662641190232330, guid: 84a5300a04248c1459e8e34d41395a21,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4832662641784744260, guid: 84a5300a04248c1459e8e34d41395a21,
         type: 3}
       propertyPath: m_Name
       value: InventorySlot (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832662641784744260, guid: 84a5300a04248c1459e8e34d41395a21,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4832662641784744261, guid: 84a5300a04248c1459e8e34d41395a21,
         type: 3}
@@ -635,6 +660,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8010719177794363610, guid: 84a5300a04248c1459e8e34d41395a21,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84a5300a04248c1459e8e34d41395a21, type: 3}
 --- !u!224 &17472004172973235 stripped
@@ -662,10 +692,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6301619932887495280}
     m_Modifications:
+    - target: {fileID: 4832662641190232330, guid: 84a5300a04248c1459e8e34d41395a21,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 4832662641784744260, guid: 84a5300a04248c1459e8e34d41395a21,
         type: 3}
       propertyPath: m_Name
       value: InventorySlot
+      objectReference: {fileID: 0}
+    - target: {fileID: 4832662641784744260, guid: 84a5300a04248c1459e8e34d41395a21,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 4832662641784744261, guid: 84a5300a04248c1459e8e34d41395a21,
         type: 3}
@@ -771,6 +811,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8010719177794363610, guid: 84a5300a04248c1459e8e34d41395a21,
+        type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84a5300a04248c1459e8e34d41395a21, type: 3}

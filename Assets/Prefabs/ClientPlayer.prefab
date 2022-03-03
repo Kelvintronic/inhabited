@@ -389,9 +389,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -167540649
+  m_SortingLayer: 2
+  m_SortingOrder: 15
   m_Sprite: {fileID: 21300000, guid: d92838cedff86fe469b0820f41e568fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -413,7 +413,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7898354412117702573}
   - component: {fileID: 2672128589266803830}
-  m_Layer: 14
+  m_Layer: 19
   m_Name: FogOfWarShadeCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -575,7 +575,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8788113782801997705}
   - component: {fileID: 4154230180647978919}
-  m_Layer: 15
+  m_Layer: 20
   m_Name: FogOfWarPlayerCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -21,17 +21,17 @@ TagManager:
   - 
   - Player
   - Mask
-  - Interactables
-  - NPC
-  - Sensors
+  - Objects
+  - InteractObjects
+  - NPCObjects
+  - 
   - Missiles
-  - FogOfWarShadeExplored
-  - FogOfWarPlayer
+  - Sensors
   - IgnoreCollision
   - Trigger
   - FogOfWarLightExplored
-  - 
-  - 
+  - FogOfWarShadeExplored
+  - FogOfWarPlayer
   - 
   - 
   - 
@@ -49,4 +49,7 @@ TagManager:
     locked: 0
   - name: FogOfWar
     uniqueID: 1933811953
+    locked: 0
+  - name: Level
+    uniqueID: 4127426647
     locked: 0

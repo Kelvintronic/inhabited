@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1711604217478723983}
   - component: {fileID: 8062220116892754542}
   - component: {fileID: 11400002}
-  m_Layer: 13
+  m_Layer: 14
   m_Name: ClientBolt
   m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 400002}
   - component: {fileID: 3300000}
   - component: {fileID: 2300000}
-  m_Layer: 13
+  m_Layer: 14
   m_Name: VFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}

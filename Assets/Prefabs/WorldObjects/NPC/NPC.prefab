@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7351926766875097910}
   - component: {fileID: 3577894385410070536}
   - component: {fileID: 4208027381359261382}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: BugView
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -69,8 +69,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -167540649
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 4588774911096800245, guid: 755e73cbcf9cd91449c7cc4d382caa17,
     type: 3}
@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 2733961398983842547}
   - component: {fileID: 6793689333530267544}
   - component: {fileID: 9065339268989093964}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: TraderView
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -198,8 +198,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -167540649
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 4636273871994739428, guid: f8c2220121679184f95f83c578a59aef,
     type: 3}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 3960795346159889142}
   - component: {fileID: 6577778393518348104}
   - component: {fileID: 5630301450367000330}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: MercView
   m_TagString: NPC
   m_Icon: {fileID: 0}
@@ -340,8 +340,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -167540649
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 5903905991286055481, guid: 323645b365947d8488da094517e53a28,
     type: 3}
@@ -413,7 +413,7 @@ GameObject:
   - component: {fileID: 8629288319733082342}
   - component: {fileID: 1411727281976786760}
   - component: {fileID: 4904636603603189836}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: NPC
   m_TagString: NPC
   m_Icon: {fileID: 0}
