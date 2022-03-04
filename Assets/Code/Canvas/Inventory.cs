@@ -26,33 +26,45 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Text _cashText;
 
     private int _highlightSlot = 0;
+    private GameTimer _keyDebounce;
+    
 
     public event EventHandler<InventorySelectArg> InventorySelect;
 
     private void Start()
     {
-
+        _keyDebounce = new GameTimer(0.1f);
     }
 
     private void Update()
     {
+
+        _keyDebounce.UpdateAsCooldown(Time.deltaTime);
+
         int slot = -1;
 
-        // slot keys
-        if (Keyboard.current.digit1Key.wasPressedThisFrame)
-            slot = 0;
-        else if (Keyboard.current.digit2Key.wasPressedThisFrame)
-            slot = 1;
-        else if (Keyboard.current.digit3Key.wasPressedThisFrame)
-            slot = 2;
-        else if (Keyboard.current.digit4Key.wasPressedThisFrame)
-            slot = 3;
-        else if (Keyboard.current.digit5Key.wasPressedThisFrame)
-            slot = 4;
+/*        if(_keyDebounce.IsTimeElapsed)
+        {
+            _keyDebounce.Reset();*/
+            // slot keys
+            if (Keyboard.current.digit1Key.wasPressedThisFrame)
+                slot = 0;
+            else if (Keyboard.current.digit2Key.wasPressedThisFrame)
+                slot = 1;
+            else if (Keyboard.current.digit3Key.wasPressedThisFrame)
+                slot = 2;
+            else if (Keyboard.current.digit4Key.wasPressedThisFrame)
+                slot = 3;
+            else if (Keyboard.current.digit5Key.wasPressedThisFrame)
+                slot = 4;
+//        }
 
         if (slot != -1)
+        {
             if (InventorySelect != null)
                 InventorySelect.Invoke(this, new InventorySelectArg { slot = slot, drop = Input.GetKey(KeyCode.LeftShift) });
+            return;
+        }
 
         // item keys
         if (Keyboard.current.spaceKey.wasPressedThisFrame)
