@@ -14,6 +14,7 @@ namespace GameEngine
             _canHit = false;
             _type = ObjectType.Conveyor;
             _layer = ObjectLayer.Funcion;
+            _flags = 1; // default speed
         }
 
         public override void Destroy()

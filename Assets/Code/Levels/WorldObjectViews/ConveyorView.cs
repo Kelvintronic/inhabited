@@ -8,7 +8,7 @@ namespace GameEngine
         private WorldObject _worldObject;
         private bool _isServer;
         private GameTimer _pushCooldownTimer;
-        private float _speed;
+        private int _speed = 1;
 
         public int Id { get => _id; }
         public bool IsServer { get => _isServer; }
@@ -23,9 +23,7 @@ namespace GameEngine
 
         private void Awake()
         {
-            _pushCooldownTimer = new GameTimer(0.1f);
-            _speed = 0.2f;
-            
+            _pushCooldownTimer = new GameTimer(0.2f);            
         }
 
         // Start is called before the first frame update
@@ -34,9 +32,9 @@ namespace GameEngine
             if(_worldObject!=null) // for manual placement of prefab
             {
                 _id = _worldObject.Id;
+                _speed = _worldObject.Flags;
                 this.transform.rotation = Quaternion.Euler(0f, 0f, _worldObject.Rotation);
             }
-
         }
 
         private void Update()
@@ -51,15 +49,8 @@ namespace GameEngine
             var player = other.GetComponentInParent<ClientPlayerView>();
             if (player != null)
             {
-                if(_pushCooldownTimer.IsTimeElapsed)
-                {
-                    _pushCooldownTimer.Reset();
-                    Vector2 velocity = this.transform.rotation * Vector2.left * _speed;
-                    player.SetPositionCorrection(velocity);
-                }
-            }
-            else
-            {
+                Vector2 velocity = this.transform.rotation * Vector2.left * Time.deltaTime * _speed;
+                player.SetPositionCorrection(velocity);
             }
         }
 
@@ -92,6 +83,8 @@ namespace GameEngine
             // Server has changed something so use data
             // to update view here.
             _worldObject = worldObject;
+
+            _speed = worldObject.Flags;
 
             this.transform.rotation = Quaternion.Euler(0f, 0f, _worldObject.Rotation);
         }

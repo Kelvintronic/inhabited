@@ -67,7 +67,10 @@ namespace GameEngine
                                     _spawnCount++;
                                     // every 10 spawns slow the spawn rate
                                     if (_spawnCount % 10 == 0)
-                                        period += 5.0f;
+                                        period += 1.0f;
+
+                                    if (period > 10)
+                                        period = 5;
                                 }
 
                                 break;
