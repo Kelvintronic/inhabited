@@ -258,6 +258,7 @@ namespace GameEngine
                     newObject = new Cash(position);
                     break;
                 case ObjectType.FalseWall:
+                case ObjectType.Barricade:
                     newObject = new Generic(position, type, width, isHorizontal);
                     break;
 

@@ -418,6 +418,9 @@ namespace GameEngine
                         case ObjectType.FalseWall:
                             view = GenericView.Create(_prefabStore.genericObjectPrefab, _cachedObjectState.worldObjects[i], _spriteArray[0]);
                             break;
+                        case ObjectType.Barricade:
+                            view = BarricadeView.Create(_prefabStore.barricadeObjectPrefab, _cachedObjectState.worldObjects[i]);
+                            break;
                         case ObjectType.NPCBug:
                         case ObjectType.NPCTrader:
                         case ObjectType.NPCMercenary:

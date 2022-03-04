@@ -22,7 +22,7 @@ namespace GameEngine
         [Tooltip("Probability of generating a Bug")]
         public float probability = 0.5f;
         [Tooltip("Seconds between each generation attempt")]
-        public float period = 5f;
+        public float period = 1f;
 
         public event EventHandler<SpawnBugEventArgs> Spawn;
 
@@ -51,7 +51,7 @@ namespace GameEngine
                             var candidate = (Vector2)gameObject.transform.position +
                                 (((UnityEngine.Random.insideUnitCircle).normalized) * UnityEngine.Random.Range(1f, 2f));
                             var overlapCircleResult = Physics2D.OverlapCircleNonAlloc(candidate, 0.25f,
-                                _overlapResult, 1 << LayerMask.NameToLayer("NPC")); // only check NPC layer
+                                _overlapResult, 1 << LayerMask.NameToLayer("NPCObjects")); // only check NPC layer
 
                             if (overlapCircleResult == 0)
                             {

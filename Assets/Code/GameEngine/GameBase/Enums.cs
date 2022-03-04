@@ -26,6 +26,7 @@
         DoorBlue,
         HiddenDoor,
         FalseWall,
+        Barricade,
 
         // Container layer objects
         Chest,

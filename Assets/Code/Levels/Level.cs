@@ -292,59 +292,62 @@ namespace GameEngine
                     }
                     switch (tile.sprite.name)
                     {
-                        case "DandyObjectSprites_0": // red key
+                        case "ObjectSprites_0": // red key
                             _objectArray.Array[x, y].type = ObjectType.KeyRed;
                             break;
-                        case "DandyObjectSprites_1": // green key
+                        case "ObjectSprites_1": // green key
                             _objectArray.Array[x, y].type = ObjectType.KeyGreen;
                             break;
-                        case "DandyObjectSprites_2": // blue key
+                        case "ObjectSprites_2": // blue key
                             _objectArray.Array[x, y].type = ObjectType.KeyBlue;
                             break;
-                        case "DandyObjectSprites_3": // bomb
+                        case "ObjectSprites_3": // bomb
                             _objectArray.Array[x, y].type = ObjectType.Bomb;
                             break;
-                        case "DandyObjectSprites_4": // heart
+                        case "ObjectSprites_4": // heart
                             _objectArray.Array[x, y].type = ObjectType.Heart;
                             break;
-                        case "DandyObjectSprites_5": // red door
+                        case "ObjectSprites_5": // red door
                             _objectArray.Array[x, y].type = ObjectType.DoorRed;
                             break;
-                        case "DandyObjectSprites_6": // green door
+                        case "ObjectSprites_6": // green door
                             _objectArray.Array[x, y].type = ObjectType.DoorGreen;
                             break;
-                        case "DandyObjectSprites_7": // blue door
+                        case "ObjectSprites_7": // blue door
                             _objectArray.Array[x, y].type = ObjectType.DoorBlue;
                             break;
-                        case "DandyObjectSprites_8": // health
+                        case "ObjectSprites_8": // health
                             _objectArray.Array[x, y].type = ObjectType.Health;
                             break;
-                        case "DandyObjectSprites_9": // cash
+                        case "ObjectSprites_9": // cash
                             _objectArray.Array[x, y].type = ObjectType.Cash;
                             break;
-                        case "DandyObjectSprites_16": // false wall
+                        case "ObjectSprites_16": // false wall
                             _objectArray.Array[x, y].type = ObjectType.FalseWall;
                             break;
-                        case "DandyObjectSprites_17": // hidden door
+                        case "ObjectSprites_17": // hidden door
                             _objectArray.Array[x, y].type = ObjectType.HiddenDoor;
                             break;
-                        case "DandyObjectSprites_18": // normal door
+                        case "ObjectSprites_18": // normal door
                             _objectArray.Array[x, y].type = ObjectType.Door;
+                            break;
+                        case "ObjectSprites_19": // barricade
+                            _objectArray.Array[x, y].type = ObjectType.Barricade;
                             break;
 
                         // NPC and Generators
-                        case "DandyObjectSprites_10":
-                        case "DandyObjectSprites_11":
-                        case "DandyObjectSprites_12":
+                        case "ObjectSprites_10":
+                        case "ObjectSprites_11":
+                        case "ObjectSprites_12":
                             _objectArray.Array[x, y].type = ObjectType.BugNest;
                             break;
-                        case "DandyObjectSprites_13":
+                        case "ObjectSprites_13":
                             _objectArray.Array[x, y].type = ObjectType.NPCBug;
                             break;
-                        case "DandyObjectSprites_14":
+                        case "ObjectSprites_14":
                             _objectArray.Array[x, y].type = ObjectType.NPCTrader;
                             break;
-                        case "DandyObjectSprites_15":
+                        case "ObjectSprites_15":
                             _objectArray.Array[x, y].type = ObjectType.NPCMercenary;
                             break;
 
