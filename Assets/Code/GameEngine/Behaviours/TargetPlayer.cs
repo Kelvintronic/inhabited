@@ -57,9 +57,13 @@ namespace GameEngine
                     {
                         Debug.Log("Raycast has hit the object " + hit.collider.gameObject);
 
+
                         IPlayerView thing = hit.collider.GetComponent<IPlayerView>();
                         if (thing != null)
-                            return true;         
+                        {
+                            Debug.Log("Raycast has hit a player");
+                            return true;
+                        }
                     }
                 }
             }

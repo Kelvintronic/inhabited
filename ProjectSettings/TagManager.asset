@@ -24,7 +24,7 @@ TagManager:
   - Objects
   - InteractObjects
   - NPCObjects
-  - 
+  - FloorObjects
   - Missiles
   - Sensors
   - IgnoreCollision
@@ -47,9 +47,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: FogOfWar
-    uniqueID: 1933811953
-    locked: 0
   - name: Level
     uniqueID: 4127426647
+    locked: 0
+  - name: FogOfWar
+    uniqueID: 1933811953
     locked: 0

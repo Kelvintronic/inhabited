@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7401720635495062246}
   - component: {fileID: 4557851241022102775}
   - component: {fileID: 8617363689377182414}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Heart
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70,7 +70,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -167540649
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 1
   m_Sprite: {fileID: 1174349151654094850, guid: cc68e934698b09a43a4f9ceed75b7d6a,
     type: 3}

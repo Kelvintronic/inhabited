@@ -22,6 +22,7 @@ namespace GameEngine
             _canHit = true;
             _type = ObjectType.NPCMercenary;
             _speed = 2;
+            health = 5;        
         }
 
         public override bool Update(float delta)
