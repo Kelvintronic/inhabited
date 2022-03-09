@@ -259,7 +259,7 @@ namespace GameEngine
                     break;
                 case ObjectType.FalseWall:
                 case ObjectType.Barricade:
-                    newObject = new Generic(position, type, width, isHorizontal);
+                    newObject = new Generic(position, type, data, width, isHorizontal);
                     break;
 
                 // NPCs and Generators
@@ -281,8 +281,11 @@ namespace GameEngine
                 case ObjectType.Conveyor:
                     newObject = new Conveyor(position, data);
                     break;
+                case ObjectType.ExitPoint:
+                    newObject = new Generic(position, type, data);
+                    break;
             }
-            if(newObject!=null)
+            if (newObject!=null)
             {
                 newObject.SetGameReferences(_levelData, _playerList);
                 return newObject;

@@ -37,6 +37,9 @@ namespace GameEngine
         private PlayerInputPacket _cachedCommand = new PlayerInputPacket();
         private ActivateObjectPacket _cachedActivateCommand = new ActivateObjectPacket();
 
+        private int _nextMap;
+        public int NextMap => _nextMap;
+
         public ServerRemoteManager(IServerData serverData)
         {
             _serverData = serverData;
@@ -156,16 +159,7 @@ namespace GameEngine
             ServerWorldObject worldObject = (ServerWorldObject)_objectManager.GetById(activatePacket.objectId);
 
             if (worldObject == null)
-            {
-                // exceptions here
-                switch (activatePacket.type)
-                {
-                    case ObjectType.ExitPoint:
-                        player.ApplyActivate(activatePacket);
-                        break;
-                }
                 return;
-            }
 
             if (!worldObject.IsActive)
                 return;
@@ -176,6 +170,9 @@ namespace GameEngine
                 // if activation is successfull do server action
                 switch (worldObject.Type)
                 {
+                    case ObjectType.ExitPoint:
+                        _nextMap = worldObject.Flags;
+                        break;
                     case ObjectType.DoorBlue:
                     case ObjectType.DoorRed:
                     case ObjectType.DoorGreen:
@@ -192,6 +189,7 @@ namespace GameEngine
                             return;
                         }
                         break;
+
                 }
             }
         }

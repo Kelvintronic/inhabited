@@ -44,8 +44,8 @@ namespace GameEngine
 
         // unique data required by clients
         protected INetSerializable _data = null;
-        protected byte _flags;
-        public byte Flags => _flags;
+        protected int _flags;
+        public int Flags => _flags;
 
         protected WorldObject(WorldVector position)
         {
@@ -115,7 +115,7 @@ namespace GameEngine
             _layer = (ObjectLayer)reader.GetInt();
             _width = reader.GetInt();
             _isHorizontal = reader.GetBool();
-            _flags = reader.GetByte();
+            _flags = reader.GetInt();
 
             switch(_type)
             {

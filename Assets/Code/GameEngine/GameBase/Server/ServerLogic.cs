@@ -156,39 +156,10 @@ namespace GameEngine
                         chest.AddItem(item.type, item.count);
                     _objectManager.AddWorldObject(chest);
                 }
-                else
-
-                // experiment to test position correction logic
-                if(player.player==0&&player.IsAlive&&player.IsActive&&_serverTick%4==0)
-                {
-              /*      float deltax=0, deltay=0;
-                    switch(turn)
-                    {
-                        case 0:
-                            deltax++;
-                            break;
-                        case 1:
-                            deltay++;
-                            break;
-                        case 2:
-                            deltax--;
-                            break;
-                        case 3:
-                            deltay--;
-                            break;
-                    }
-                    turn++;
-                    if (turn > 3)
-                        turn = 0;
-
-                    _remoteManager.SendToPeer(player.AssociatedPeer, new PlayerPositionCorrection {x=deltax, y=deltay});
-                    */
-                }
             }
 
             // Update objects (movement and such)
             _objectManager.LogicUpdate();
-
 
             // on only even tick values
             // Send to each client a server state
@@ -197,21 +168,15 @@ namespace GameEngine
                 // if all players are inactive then we need to move to the next map
                 if (_playerManager.Count > 0 && _playerManager.GetInactivePlayers() == _playerManager.Count)
                 {
-                    _map++;
-                    if (_map > 5)
-                        _map = 0; // wrap arround
-
-                    JumpToMap(_map);
-
-                /*    var level = _levelSet.GetCurrentLevel();
-                    var chestLocation = level.GetSpawnPoint() + new Vector2(5f, 5f);
-
-                    // throw a chest into the map for testing
-                    Chest chest = (Chest)_objectManager.CreateWorldObject(ObjectType.Chest, new WorldVector(chestLocation.x, chestLocation.y));
-                    chest.AddItem(PlayerBagItem.Bomb, 1);
-                    chest.AddItem(PlayerBagItem.Health, 1);
-                    chest.AddItem(PlayerBagItem.KeyRed, 1);
-                    _objectManager.AddWorldObject(chest);*/
+                    // convert int to ushort
+                    for(ushort map = 0; map<_levelSet.NumberOfLevels; map++)
+                        // NextMap is set by the last player to exit the level
+                        if (map == _remoteManager.NextMap)
+                        {
+                            JumpToMap(map);
+                            return;
+                        }
+                    JumpToMap(0); // wrap arround
                 }
 
                 // send object updates if any
@@ -248,17 +213,13 @@ namespace GameEngine
             // Send new map packet to all except our client
             foreach (ServerPlayer p in _playerManager)
             {
-                if (p.Id!=0)
-                    _remoteManager.SendToPeer(p.AssociatedPeer, PacketType.NewMap, _currentMapPacket);
-
-                // and reset each player for new level
+                // reset each player for new level
                 p.NewLevelReset();
                 _playerManager.PlayerStates[p.player].Active = true;
+
+                _remoteManager.SendToPeer(p.AssociatedPeer, PacketType.NewMap, _currentMapPacket);
+
             }
-
-            // Tell our client to set the new map
-            _clientLogic.OnNewMap(_currentMapPacket);
-
         }
         private void SetMap()
         {
@@ -271,8 +232,7 @@ namespace GameEngine
             if(_levelSet.IsCustomLevel)
             {
                 _currentMapPacket.SetCustomMap(currentLevel.GetMapArray(),
-                                            new WorldVector(currentLevel.GetSpawnPoint().x, currentLevel.GetSpawnPoint().y),
-                                            new WorldVector(currentLevel.GetExitPoint().x, currentLevel.GetExitPoint().y));
+                                            new WorldVector(currentLevel.GetSpawnPoint().x, currentLevel.GetSpawnPoint().y));
             }
 
             // Reinitialise the object manager for the new level

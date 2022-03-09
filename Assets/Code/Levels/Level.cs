@@ -10,7 +10,6 @@ namespace GameEngine
 
     public class Level : MonoBehaviour
     {
-        [SerializeField] private ExitPoint exitPoint;
         [SerializeField] private SpawnPoint spawnPoint;
         [SerializeField] private Tilemap mainMap;
         [SerializeField] private Tilemap objectMap;
@@ -91,16 +90,6 @@ namespace GameEngine
         public void MoveSpawnPoint(Vector2 newPoint)
         {
             spawnPoint.gameObject.transform.position = new Vector3(newPoint.x, newPoint.y, 0);
-        }
-
-        public void MoveExitPoint(Vector2Int newPoint)
-        {
-            exitPoint.gameObject.transform.position = new Vector3(newPoint.x+0.5f, newPoint.y+0.5f, 0);
-        }
-
-        public void MoveExitPoint(Vector2 newPoint)
-        {
-            exitPoint.gameObject.transform.position = new Vector3(newPoint.x, newPoint.y, 0);
         }
 
         public Vector2 GetMapCenter()
@@ -385,6 +374,46 @@ namespace GameEngine
                             _objectArray.Array[x, y].type = ObjectType.Conveyor;
                             _objectArray.Array[x, y].data = 45;
                             break;
+
+                        // Exit Points
+                        case "EnterExitTiles_1":
+                            _objectArray.Array[x, y].type = ObjectType.ExitPoint;
+                            _objectArray.Array[x, y].data = 0;
+                            break;
+                        case "EnterExitTiles_2":
+                            _objectArray.Array[x, y].type = ObjectType.ExitPoint;
+                            _objectArray.Array[x, y].data = 1;
+                            break;
+                        case "EnterExitTiles_3":
+                            _objectArray.Array[x, y].type = ObjectType.ExitPoint;
+                            _objectArray.Array[x, y].data = 2;
+                            break;
+                        case "EnterExitTiles_4":
+                            _objectArray.Array[x, y].type = ObjectType.ExitPoint;
+                            _objectArray.Array[x, y].data = 3;
+                            break;
+                        case "EnterExitTiles_5":
+                            _objectArray.Array[x, y].type = ObjectType.ExitPoint;
+                            _objectArray.Array[x, y].data = 4;
+                            break;
+                        case "EnterExitTiles_6":
+                            _objectArray.Array[x, y].type = ObjectType.ExitPoint;
+                            _objectArray.Array[x, y].data = 5;
+                            break;
+                        case "EnterExitTiles_7":
+                            _objectArray.Array[x, y].type = ObjectType.ExitPoint;
+                            _objectArray.Array[x, y].data = 6;
+                            break;
+                        case "EnterExitTiles_8":
+                            _objectArray.Array[x, y].type = ObjectType.ExitPoint;
+                            _objectArray.Array[x, y].data = 7;
+                            break;
+                        case "EnterExitTiles_9":
+                            _objectArray.Array[x, y].type = ObjectType.ExitPoint;
+                            _objectArray.Array[x, y].data = 8;
+                            break;
+
+
                     }
                 }
             return _objectArray;
@@ -393,10 +422,6 @@ namespace GameEngine
         public Vector2 GetSpawnPoint()
         {
             return spawnPoint.gameObject.transform.position;
-        }
-        public Vector2 GetExitPoint()
-        {
-            return exitPoint.gameObject.transform.position;
         }
     }
 

@@ -315,9 +315,8 @@ namespace GameEngine
         public int xCount;
         public int yCount;
         public WorldVector spawnPoint;
-        public WorldVector exitPoint;
 
-        public void SetCustomMap(MapArray mapArray, WorldVector spawnPoint, WorldVector exitPoint)
+        public void SetCustomMap(MapArray mapArray, WorldVector spawnPoint)
         {
             if (mapArray == null)
             {
@@ -325,7 +324,6 @@ namespace GameEngine
                 return;
             }
             this.spawnPoint = spawnPoint;
-            this.exitPoint = exitPoint;
             this.mapArray = mapArray;
             xCount = mapArray.xCount;
             yCount = mapArray.yCount;
@@ -344,7 +342,6 @@ namespace GameEngine
             if (isCustom)
             {
                 writer.Put(spawnPoint);
-                writer.Put(exitPoint);
                 writer.Put(xCount);
                 writer.Put(yCount);
                 for (int x = 0; x < xCount; x++)
@@ -364,7 +361,6 @@ namespace GameEngine
             if(isCustom)
             {
                 spawnPoint=reader.GetWorldVector();
-                exitPoint = reader.GetWorldVector();
                 xCount = reader.GetInt();
                 yCount = reader.GetInt();
                 mapArray = new MapArray(xCount, yCount,0,0);

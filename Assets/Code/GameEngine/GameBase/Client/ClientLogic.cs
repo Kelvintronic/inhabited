@@ -219,7 +219,7 @@ namespace GameEngine
             if (!_serverLogic.IsStarted)
             {
                 if (newMap.isCustom)
-                    _levelSet.SetCustomMap(newMap.mapArray, newMap.spawnPoint, newMap.exitPoint);
+                    _levelSet.SetCustomMap(newMap.mapArray, newMap.spawnPoint);
                 else
                     _levelSet.SetMap(newMap.nMap);
             }
@@ -448,6 +448,9 @@ namespace GameEngine
                             break;
                         case ObjectType.Conveyor:
                             view = ConveyorView.Create(_prefabStore.conveyorObjectPrefab, _cachedObjectState.worldObjects[i], _serverLogic.IsStarted);
+                            break;
+                        case ObjectType.ExitPoint:
+                            view = ExitView.Create(_prefabStore.exitObjectPrefab, _cachedObjectState.worldObjects[i], _serverLogic.IsStarted);
                             break;
                     }
                     if (view != null)

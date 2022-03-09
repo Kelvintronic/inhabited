@@ -120,11 +120,10 @@ namespace GameEngine
             return true;
         }
 
-        public bool SetCustomMap(MapArray map, WorldVector spawnPoint, WorldVector exitPoint)
+        public bool SetCustomMap(MapArray map, WorldVector spawnPoint)
         {
             _customLevel.RenderCustomMap(map, _dandyTileArray[0]);
             _customLevel.MoveSpawnPoint(new Vector2(spawnPoint.x, spawnPoint.y));
-            _customLevel.MoveExitPoint(new Vector2(spawnPoint.x, spawnPoint.y));
             _isCustomLevel = true;
             SetMap(0);
             return true;

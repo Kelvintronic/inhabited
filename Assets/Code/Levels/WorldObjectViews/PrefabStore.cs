@@ -17,4 +17,6 @@ public class PrefabStore : MonoBehaviour
     public GenericView genericObjectPrefab;
     public ConveyorView conveyorObjectPrefab;
     public BarricadeView barricadeObjectPrefab;
+    public ExitView exitObjectPrefab;
+
 }
