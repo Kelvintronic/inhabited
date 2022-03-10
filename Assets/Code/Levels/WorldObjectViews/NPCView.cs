@@ -5,10 +5,8 @@ namespace GameEngine
     public class NPCView : MonoBehaviour, IObjectView
     {
         private int _id;
-        private int _viewIndex;
-        private const int Views = 3; // number of different views available
 
-        [SerializeField] private GameObject[] _views;
+        [SerializeField] private GameObject _view;
 
         private WorldObject _worldObject;
         private bool _isServer;
@@ -31,12 +29,8 @@ namespace GameEngine
         private void Start()
         {
             _id = _worldObject.Id;
-            _viewIndex = _worldObject.Type - ObjectType.NPCBug;
-            for (byte i = 0; i < Views; i++)
-                _views[i].SetActive(i == _viewIndex);
-            _animator = _views[_viewIndex].transform.GetComponent<Animator>();
+            _animator = _view.transform.GetComponent<Animator>();
             _animationRefreshTimer = new GameTimer(1.0f);
-
         }
 
         private void Update()

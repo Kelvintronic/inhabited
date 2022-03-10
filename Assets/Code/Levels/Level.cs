@@ -326,9 +326,13 @@ namespace GameEngine
 
                         // NPC and Generators
                         case "ObjectSprites_10":
-                        case "ObjectSprites_11":
-                        case "ObjectSprites_12":
                             _objectArray.Array[x, y].type = ObjectType.BugNest;
+                            break;
+                        case "ObjectSprites_11":
+                            _objectArray.Array[x, y].type = ObjectType.NPCSpider;
+                            break;
+                        case "ObjectSprites_12":
+                            _objectArray.Array[x, y].type = ObjectType.NPCMantis;
                             break;
                         case "ObjectSprites_13":
                             _objectArray.Array[x, y].type = ObjectType.NPCBug;

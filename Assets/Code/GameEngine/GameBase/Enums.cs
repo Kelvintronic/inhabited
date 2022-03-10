@@ -14,6 +14,8 @@
         Wall,
         ExitPoint,
         NPC_Intent,
+        NPCSpider,
+        NPCMantis,
         NPCBug,
         NPCTrader,
         NPCMercenary,

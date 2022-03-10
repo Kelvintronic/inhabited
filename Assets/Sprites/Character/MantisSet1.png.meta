@@ -1,28 +1,25 @@
 fileFormatVersion: 2
-guid: 7592434d37b16d441b47d6ff57f1113a
+guid: 16ad613592034834699dd7af9c3581a4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4580840148756106397
-    second: Spider-sprite_0
+      213: -6552453939684579487
+    second: MantisSet1_0
   - first:
-      213: -3591835385654180533
-    second: Spider-sprite_1
+      213: 5300790411940009788
+    second: MantisSet1_1
   - first:
-      213: 1691278443787525759
-    second: Spider-sprite_2
+      213: 6916599094908825958
+    second: MantisSet1_2
   - first:
-      213: 7675659912837260738
-    second: Spider-sprite_3
+      213: 2555968014621946609
+    second: MantisSet1_3
   - first:
-      213: 6921632170983657763
-    second: Spider-sprite_4
+      213: -8804489353478720383
+    second: MantisSet1_4
   - first:
-      213: -8136276854739994098
-    second: Spider-sprite_5
-  - first:
-      213: 3745137049992945184
-    second: Spider-sprite_6
+      213: -3758316319491306358
+    second: MantisSet1_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -66,7 +63,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 62
+  spritePixelsToUnits: 191
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -120,148 +117,127 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Spider-sprite_0
+      name: MantisSet1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 62
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 191
+        height: 338
+      alignment: 9
+      pivot: {x: 0.47202796, y: 0.50000006}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3637b80b7269d60c0800000000000000
-      internalID: -4580840148756106397
+      spriteID: 167edf5bbd10115a0800000000000000
+      internalID: -6552453939684579487
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spider-sprite_1
+      name: MantisSet1_1
       rect:
         serializedVersion: 2
-        x: 62
+        x: 191
         y: 0
-        width: 62
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 191
+        height: 338
+      alignment: 9
+      pivot: {x: 0.45337984, y: 0.50000006}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b4587624fbc372ec0800000000000000
-      internalID: -3591835385654180533
+      spriteID: c371b7c7bc0309940800000000000000
+      internalID: 5300790411940009788
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spider-sprite_2
+      name: MantisSet1_2
       rect:
         serializedVersion: 2
-        x: 124
+        x: 382
         y: 0
-        width: 62
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 191
+        height: 338
+      alignment: 9
+      pivot: {x: 0.45337984, y: 0.50526893}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f7e1b3aa8c0a87710800000000000000
-      internalID: 1691278443787525759
+      spriteID: 66134d92b32bcff50800000000000000
+      internalID: 6916599094908825958
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spider-sprite_3
+      name: MantisSet1_3
       rect:
         serializedVersion: 2
-        x: 186
+        x: 573
         y: 0
-        width: 62
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 191
+        height: 338
+      alignment: 9
+      pivot: {x: 0.46270368, y: 0.50000006}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2c5ee59f50c658a60800000000000000
-      internalID: 7675659912837260738
+      spriteID: 1f23dc00e5f987320800000000000000
+      internalID: 2555968014621946609
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spider-sprite_4
+      name: MantisSet1_4
       rect:
         serializedVersion: 2
-        x: 248
+        x: 762
         y: 0
-        width: 62
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 191
+        height: 338
+      alignment: 9
+      pivot: {x: 0.4720277, y: 0.50526893}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 321956189c39e0060800000000000000
-      internalID: 6921632170983657763
+      spriteID: 1843139c49b20d580800000000000000
+      internalID: -8804489353478720383
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Spider-sprite_5
+      name: MantisSet1_5
       rect:
         serializedVersion: 2
-        x: 310
+        x: 955
         y: 0
-        width: 62
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 191
+        height: 338
+      alignment: 9
+      pivot: {x: 0.45337936, y: 0.50526893}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e0a7df6fe43261f80800000000000000
-      internalID: -8136276854739994098
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Spider-sprite_6
-      rect:
-        serializedVersion: 2
-        x: 372
-        y: 0
-        width: 62
-        height: 71
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 02edbfbed4669f330800000000000000
-      internalID: 3745137049992945184
+      spriteID: a8cca274837c7dbc0800000000000000
+      internalID: -3758316319491306358
       vertices: []
       indices: 
       edges: []

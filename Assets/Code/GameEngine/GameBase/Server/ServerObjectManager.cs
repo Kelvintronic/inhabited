@@ -269,6 +269,12 @@ namespace GameEngine
                 case ObjectType.NPCBug:
                     newObject = new NPCBug(position, this);
                     break;
+                case ObjectType.NPCSpider:
+                    newObject = new NPCSpider(position, this);
+                    break;
+                case ObjectType.NPCMantis:
+                    newObject = new NPCMantis(position, this);
+                    break;
                 case ObjectType.NPCTrader:
                     newObject = new NPCTrader(position, this);
                     break;

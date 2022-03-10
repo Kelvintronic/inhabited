@@ -380,6 +380,7 @@ namespace GameEngine
         {
             for (int i = 0; i < _cachedObjectState.worldObjectCount; i++)
             {
+                NPCView npcView = null;
                 var view = _objectManager.GetViewById(_cachedObjectState.worldObjects[i].Id);
                 if (view != null)
                 {
@@ -421,10 +422,44 @@ namespace GameEngine
                         case ObjectType.Barricade:
                             view = BarricadeView.Create(_prefabStore.barricadeObjectPrefab, _cachedObjectState.worldObjects[i]);
                             break;
+                        case ObjectType.NPCSpider:
+                            npcView = NPCView.Create(_prefabStore.spiderObjectPrefab, _cachedObjectState.worldObjects[i], _serverLogic.IsStarted);
+                            if (_serverLogic.IsStarted)
+                            {
+                                npcView.Monster.Attack += _serverLogic.OnMonsterAttack;
+                                npcView.Monster.EyesOn += _serverLogic.OnMonsterWatching;
+                            }
+                            view = npcView;
+                            break;
+                        case ObjectType.NPCMantis:
+                            npcView = NPCView.Create(_prefabStore.mantisObjectPrefab, _cachedObjectState.worldObjects[i], _serverLogic.IsStarted);
+                            if (_serverLogic.IsStarted)
+                            {
+                                npcView.Monster.Attack += _serverLogic.OnMonsterAttack;
+                                npcView.Monster.EyesOn += _serverLogic.OnMonsterWatching;
+                            }
+                            view = npcView;
+                            break;
                         case ObjectType.NPCBug:
+                            npcView = NPCView.Create(_prefabStore.cockroachObjectPrefab, _cachedObjectState.worldObjects[i], _serverLogic.IsStarted);
+                            if (_serverLogic.IsStarted)
+                            {
+                                npcView.Monster.Attack += _serverLogic.OnMonsterAttack;
+                                npcView.Monster.EyesOn += _serverLogic.OnMonsterWatching;
+                            }
+                            view = npcView;
+                            break;
                         case ObjectType.NPCTrader:
+                            npcView = NPCView.Create(_prefabStore.traderObjectPrefab, _cachedObjectState.worldObjects[i], _serverLogic.IsStarted);
+                            if (_serverLogic.IsStarted)
+                            {
+                                npcView.Monster.Attack += _serverLogic.OnMonsterAttack;
+                                npcView.Monster.EyesOn += _serverLogic.OnMonsterWatching;
+                            }
+                            view = npcView;
+                            break;
                         case ObjectType.NPCMercenary:
-                            var npcView = NPCView.Create(_prefabStore.npcObjectPrefab, _cachedObjectState.worldObjects[i], _serverLogic.IsStarted);
+                            npcView = NPCView.Create(_prefabStore.mercenaryObjectPrefab, _cachedObjectState.worldObjects[i], _serverLogic.IsStarted);
                             if (_serverLogic.IsStarted)
                             {
                                 npcView.Monster.Attack += _serverLogic.OnMonsterAttack;
