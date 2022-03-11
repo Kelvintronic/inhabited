@@ -20,7 +20,7 @@ namespace GameEngine
  
         }
 
-        public override bool OnHit()
+        public override bool OnHit(int playerId = -1)
         {
             if (_health > 0)
             {

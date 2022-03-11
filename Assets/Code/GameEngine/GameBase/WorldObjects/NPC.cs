@@ -13,8 +13,8 @@ namespace GameEngine
         public const int MaxSpeed = 3;
 
         public NPCStance stance;
-        [Range(0, MaxHealth - 1)]
-        public byte health;
+
+        protected int _health;
 
         protected int _moveCount;
         protected WorldVector _moveDelta;
@@ -48,11 +48,11 @@ namespace GameEngine
             return base.Update(delta);
         }
 
-        public override bool OnHit()
+        public override bool OnHit(int playerId = -1)
         {
-            if (health > 0) 
+            if (_health > 0) 
             {
-                health --;
+                _health --;
                 Debug.Log("NPC id '" + Id + "' lost health");
             }
             else

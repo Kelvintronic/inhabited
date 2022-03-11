@@ -72,12 +72,6 @@ namespace GameEngine
             }
             return false;
         }
-
-        public override bool OnHit()
-        {
-            return false;
-        }
-
     }
 
     public class ChestData : INetSerializable

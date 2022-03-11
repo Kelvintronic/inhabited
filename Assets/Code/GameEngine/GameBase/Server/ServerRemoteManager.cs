@@ -179,7 +179,9 @@ namespace GameEngine
                     case ObjectType.Door:
                     case ObjectType.HiddenDoor:
                         _objectManager.RemoveObject(activatePacket.objectId);
-                        SendToAll(new RevealAreaPacket { direction = player.Rotation, position = player.Position });
+                        // calculate direction for reveal area raycast
+                        var raycastDirection = ((Door)(worldObject)).GetRaycastDirection(player.Position, player.Rotation);
+                        SendToAll(new RevealAreaPacket { direction = raycastDirection, position = player.Position });
                         break;
                     case ObjectType.Chest:
                         if (worldObject.Lock(player))

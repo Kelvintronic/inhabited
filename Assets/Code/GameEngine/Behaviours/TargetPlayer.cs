@@ -38,7 +38,8 @@ namespace GameEngine
                     _shootTimer.Reset();
                     if(CheckLineOfSite())
                     {
-                        _monster.Shoot();
+                        if(_NPC.IsHostile)
+                            _monster.Shoot();
                     }
                 }
             }

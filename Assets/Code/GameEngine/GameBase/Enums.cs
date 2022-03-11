@@ -1,5 +1,11 @@
 ﻿namespace GameEngine
 {
+    public enum Flag
+    {
+        None,
+        IsHostile
+    }
+
     public enum ObjectType
     {
         // common to PlayerBagItem

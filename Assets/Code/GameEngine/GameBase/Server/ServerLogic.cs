@@ -325,7 +325,7 @@ namespace GameEngine
                     break;
             }
 
-            if (worldObject.OnHit())
+            if (worldObject.OnHit(e.playerId))
             {
                 _objectManager.RemoveObject(worldObject.Id);
 

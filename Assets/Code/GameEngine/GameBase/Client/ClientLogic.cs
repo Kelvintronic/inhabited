@@ -262,13 +262,40 @@ namespace GameEngine
         {
             Debug.Log("[C] Received Reveal Area Packet");
 
-            Vector2 direction = new Vector2(Mathf.Cos(packet.direction + 90 * Mathf.Deg2Rad), Mathf.Sin(packet.direction + 90 * Mathf.Deg2Rad));
+            Vector2 direction = Quaternion.Euler(0f, 0f, packet.direction * Mathf.Rad2Deg) * Vector2.up;
             Vector2 position = new Vector2(packet.position.x, packet.position.y);
 
             RaycastHit2D hit = Physics2D.Raycast(position, direction, 2.0f, LayerMask.GetMask("Mask"));
             if (hit.collider != null)
                 hit.collider.gameObject.SetActive(false);
 
+        }
+
+        private void OnShootPacket(ShootPacket shootData)
+        {
+            GameObject gameObject = null;
+
+            // is shot from an NPC or a player?
+            if (shootData.IsNPCShooter)
+            {
+                var objectView = _objectManager.GetViewById(shootData.ShooterId);
+                if (objectView != null)
+                    gameObject = objectView.GetGameObject();
+            }
+            else
+            {
+                var playerView = _playerManager.GetViewById(shootData.ShooterId);
+                if (playerView != null)
+                    gameObject = playerView.GetGameObject();
+            }
+
+            if (gameObject != null)
+            {
+                // does the gameObject have a gun component?
+                var gun = gameObject.GetComponent<Gun>();
+                if (gun != null)
+                    gun.Shoot(IsServer, shootData, _serverLogic.OnBoltHit);
+            }
         }
 
 
@@ -502,32 +529,7 @@ namespace GameEngine
                 Debug.Log($"[C] Player quit: {player.Name}");
         }
 
-        private void OnShootPacket(ShootPacket shootData)
-        {
-            GameObject gameObject = null;
 
-            // is shot from an NPC or a player?
-            if (shootData.IsNPCShooter)
-            {
-                var objectView = _objectManager.GetViewById(shootData.ShooterId);
-                if (objectView != null)
-                    gameObject = objectView.GetGameObject();
-            }
-            else
-            {
-                var playerView = _playerManager.GetViewById(shootData.ShooterId);
-                if (playerView != null)
-                    gameObject = playerView.GetGameObject();
-            }
-
-            if (gameObject != null)
-            {
-                // does the gameObject have a gun component?
-                var gun = gameObject.GetComponent<Gun>();
-                if (gun != null)
-                    gun.Shoot(IsServer, shootData, _serverLogic.OnBoltHit);
-            }
-        }
 
         public void SendPacketSerializable<T>(PacketType type, T packet, DeliveryMethod deliveryMethod) where T : INetSerializable
         {

@@ -22,7 +22,7 @@ namespace GameEngine
             _canHit = true;
             _type = ObjectType.NPCSpider;
             _speed = 2;
-            health = 5;        
+            _health = 3;        
         }
 
         public override bool Update(float delta)
@@ -31,10 +31,11 @@ namespace GameEngine
             _blockedPathTimer.UpdateAsCooldown(delta);
 
             if (_updateTimer.IsTimeElapsed)
+            {
+                _updateTimer.Reset();
+
                 if (_isWatching)
                 {
-                    _updateTimer.Reset();
-
                     // get current cell
                     _currentCell = _mapArray.GetCellVector(_position);
 
@@ -43,7 +44,7 @@ namespace GameEngine
                         // populate _nextCell based on method
                         if (_useSearch && !_pauseSearching)
                             _hasIntent = GetNextPathMove();
-                        else 
+                        else
                             _hasIntent = GetNextMove(); // head straight toward player
                         _isMoving = false;
                     }
@@ -83,25 +84,13 @@ namespace GameEngine
                     }
                 }
 
+            }
+
 
             // Don't forget to set the boolean: _update=true if you need the client to be updated
             // Note: The client only gets the WorldObject base data
             return base.Update(delta);
         }
-
-        public override bool OnHit()
-        {
-            if (health > 0)
-            {
-                health--;
-                Debug.Log("Mercenary id '" + Id + "' lost health");
-            }
-            else
-                return true;
-
-            return false;
-        }
-
 
         public override void Destroy()
         {

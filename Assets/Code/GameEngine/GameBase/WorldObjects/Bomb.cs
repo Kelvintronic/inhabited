@@ -14,7 +14,7 @@ namespace GameEngine
             _type = ObjectType.Bomb;
         }
 
-        public override bool OnHit()
+        public override bool OnHit(int playerId = -1)
         {
             return true;
         }

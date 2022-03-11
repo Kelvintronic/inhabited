@@ -14,6 +14,7 @@ namespace GameEngine
             _canHit = true;
             _type = ObjectType.NPCMantis;
             _speed = 3;
+            _health = 3;
         }
 
         public override bool Update(float delta)
@@ -22,10 +23,11 @@ namespace GameEngine
             _blockedPathTimer.UpdateAsCooldown(delta);
 
             if(_updateTimer.IsTimeElapsed)
+            {
+                _updateTimer.Reset();
+
                 if (_isWatching)
                 {
-                    _updateTimer.Reset();
-
                     // get current cell
                     _currentCell = _mapArray.GetCellVector(_position);
 
@@ -36,7 +38,7 @@ namespace GameEngine
                         _flags = 0; // isMoving flag for client
                     }
 
-                    if (_hasIntent&&!_isMoving)
+                    if (_hasIntent && !_isMoving)
                     {
                         if (!TryToMove())
                         {
@@ -70,25 +72,11 @@ namespace GameEngine
                     }
                 }
 
+            }
 
             // Don't forget to set the boolean: _update=true if you need the client to be updated
             // Note: The client only gets the WorldObject base data
             return base.Update(delta);
-        }
-
-
-
-        public override bool OnHit()
-        {
-            if (health > 0) 
-            {
-                health --;
-                Debug.Log("Bug id '" + Id + "' lost health");
-            }
-            else
-                return true;
-
-            return false;
         }
 
         public override void DestroyNotification()

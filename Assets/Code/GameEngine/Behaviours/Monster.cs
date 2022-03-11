@@ -253,12 +253,17 @@ namespace GameEngine
 
         public void UpdatePosition(WorldVector pos)
         {
-            // to disable animation set the position directly and don't add to buffer
+            // NOTE: If the server is updating too fast then movements will get lost!
+            //       Remove the IsFull check and an exception will trigger if this is
+            //       the case.
 
-            // _position.x = pos.x;
-            // _position.y = pos.y;
-
-            _buffer.Add(pos);
+            if(!_buffer.IsFull)
+            {
+                // only add pos if it is different from the last
+                if(_buffer.Last!=pos)
+                    _buffer.Add(pos);
+            }
+                
         }
     }
 }

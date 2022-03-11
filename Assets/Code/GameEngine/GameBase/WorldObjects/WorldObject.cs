@@ -47,6 +47,23 @@ namespace GameEngine
         protected int _flags;
         public int Flags => _flags;
 
+        protected void SetFlag(Flag bit, bool set)
+        {
+            // limit to 16bit
+            if ((int)bit > 15)
+                return;
+
+            if (set)
+                _flags = Flags | (int)bit;   // set to 1
+            else if ((_flags & (int)bit) == 1)
+                _flags = Flags ^ (int)bit;   // flip from 1 to 0
+        }
+
+        public bool GetFlag(Flag bit)
+        {
+            return (_flags & (int)bit)==1;
+        }
+
         protected WorldObject(WorldVector position)
         {
             _id = _nextid++;
@@ -83,7 +100,7 @@ namespace GameEngine
         }
 
         // should return true if object should be destroyed
-        public virtual bool OnHit()
+        public virtual bool OnHit(int playerId = -1)
         {
             return false;
         }

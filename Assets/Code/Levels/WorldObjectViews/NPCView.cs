@@ -20,6 +20,8 @@ namespace GameEngine
         public bool IsServer { get => _isServer; }
         public Monster Monster { get => _monster; }
 
+        public bool IsHostile => _worldObject.GetFlag(Flag.IsHostile);
+
         private void Awake()
         {
             _monster = GetComponent<Monster>();
@@ -94,7 +96,9 @@ namespace GameEngine
             this.transform.rotation = Quaternion.Euler(0f, 0f, _worldObject.Rotation * Mathf.Rad2Deg);
 
             if (_monster != null)
+            {
                 _monster.UpdatePosition(_worldObject.Position);
+            }
         }
 
         void IObjectView.SetActive(bool isActive)
