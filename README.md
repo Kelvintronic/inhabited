@@ -14,7 +14,7 @@ Levels
 
 Levels are managed by the persistant LevelSet object. Both the client and server share a reference to this. Each level is a prefab containing two tilemaps. One tilemap contains the 'walls' only and the other contains all objects to be instantiated at game start.
 
-When Host is clicked the server object starts, followed by the client. The server determines the starting level and sends a packet to all clients (initially only its local client) that then instantiate the level using the SetLevel method of the LevelSet object. When the level starts the object tilemap is hidden. The server requests the current level from LevelSet in the form of a MapArray. A MapArray is essentially a two dimensional array of enum object types. The Level object can provide a different MapArray each of the tilemaps held by that level. The server initally recieves the 'walls' MapArray and this is shared with the ServerObjectManager (SOM). This array then becomes the main MapArray that will soon contain references to the objects as well. The server next recieves the object MapArray and iterates through, creating a ServerWorldObject for each object type and adding these to the SOM. When an object is added the SOM also adds a reference to the object in the main MapArray. The MapArray is designed to hold the id of the individual objects and this is why they are added separately. During the next server tick all objects are serialised and sent to the clients. The clients then instantiates the object prefabs.
+When Host is clicked the server object starts, followed by the client. The server determines the starting level and sends a packet to all clients (initially only its local client) that then instantiates the level using the SetLevel method of the LevelSet object. When the level starts the object tilemap is hidden. The server requests the current level from LevelSet in the form of a MapArray. A MapArray is essentially a two dimensional array of enum object types. The Level object can provide a different MapArray for each of the tilemaps held by that level. The server initally recieves the 'walls' MapArray and this is shared with the ServerObjectManager (SOM). This array then becomes the main MapArray that will soon contain references to the objects as well. The server next recieves the object MapArray and iterates through, creating a ServerWorldObject for each object type and adding these to the SOM. When an object is added the SOM also adds a reference to the object in the main MapArray. The MapArray is designed to hold the id of the individual objects and this is why they are added separately. During the next server tick all objects are serialised and sent to the clients. The clients then instantiates the object prefabs.
 
 Objects
 
@@ -34,11 +34,15 @@ ObjectManagers
 
 There is a ServerObjectManager and a ClientObjectManager. The server version contains only ServerWorldObjects and uses an interface to the Server to update client objects each tick. If an object is removed from the SOM then it's Destroy method is called and a destroy object packet is sent to the client. The client version contains WorldObjects and ObjectViews if a destroy object packet is recieved it destroys these.
 
+ServerManagers
+
+There are three main server managers; ServerLogic, ServerRemoteManager and ServerLocalManager. Although the different roles are not fully realised yet - there is still some cross over. ServerLogic will eventually only contain the main update routine and the new map routines. ServerRemoteManager contains routines that react to client messaging. ServerLocalManager contains callback routines that respond to local logic of the server instance of the game, i.e. host client routines that detect the server is running locally can use the ServerLocalManager routines rather than the network.
+
 Players
 
 Players are prefabs. There are ClientPlayer and RemotePlayer prefabs. The client version is responsible for getting player input whereas the remote version simply displays where the other players are to that client player. 
 
-The client player intance for each game instance is the true holder of that players position. Any collisions with objects occur only for that client and the remote player instances on the other clients reflect that.
+The client player instance for each game instance is the true holder of that players position. Any collisions with objects occur only for that client and the remote player instances on the other clients reflect that.
 
 Attacks
 
