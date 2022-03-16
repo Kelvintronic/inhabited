@@ -6,7 +6,7 @@ namespace GameEngine
 {
     public class ClientPlayerView : MonoBehaviour, IPlayerView
     {
-        [SerializeField] private GameObject _sprite;
+        [SerializeField] private PlayerSpriteSet _sprites;
         [SerializeField] private GameObject _target;
         [SerializeField] private GameObject _serverProjectilePrefab;
         [SerializeField] private GameObject _clientProjectilePrefab;
@@ -14,6 +14,7 @@ namespace GameEngine
         [SerializeField] private GameObject _childCollection;
 
         private Animator _animator;
+        private PlayerColour _colour;
         private const int _distanceOfSight = 6;
         private const int _targetSpeed = 2;
 
@@ -47,31 +48,14 @@ namespace GameEngine
 
         public bool IsFogOfWar => _isFogOfWar;
 
-        public static ClientPlayerView Create(ClientLogic clientLogic, ClientPlayerView prefab, ClientPlayer player, Sprite sprite = null)
+        public static ClientPlayerView Create(ClientLogic clientLogic, ClientPlayerView prefab, ClientPlayer player, PlayerColour colour = PlayerColour.Red)
         {
             Quaternion rot = Quaternion.Euler(0f, 0, 0f);
             var obj = Instantiate(prefab, new Vector2(player.Position.x, player.Position.y), rot);
             obj._player = player;
             obj._clientLogic = clientLogic;
-
-            if (sprite != null)
-                obj.SetSprite(sprite);
-
+            obj._colour = colour;
             return obj;
-        }
-
-        private void Awake()
-        {
-            _rigidbody2d = GetComponent<Rigidbody2D>();
-            _animator = _sprite.GetComponent<Animator>();
-            //  _collider2d = gameObject.GetComponent<Collider2D>();
-            //  _spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-            _enemySpriteMask = transform.Find("EnemySpriteMask").GetComponent<SpriteMask>();
-        }
-
-        public void SetSprite(Sprite sprite)
-        {
-           // _spriteRenderer.sprite = sprite;
         }
 
         public string GetStatusText()
@@ -92,6 +76,10 @@ namespace GameEngine
 
         private void Start()
         {
+            _sprites.SetSprite(_colour);        // must set sprite before GetAnimator()
+            _animator = _sprites.GetAnimator();
+            _rigidbody2d = GetComponent<Rigidbody2D>();
+            _enemySpriteMask = transform.Find("EnemySpriteMask").GetComponent<SpriteMask>();
             _healthBar = GetComponentInChildren<HealthBar>();
             _enableInputTimer.Reset();
             Cursor.visible = false;
@@ -159,7 +147,7 @@ namespace GameEngine
 
             // work out player direction and set arrow accordingly
             _rotation = Mathf.Atan2(_targetPosition.y, _targetPosition.x) - 90 * Mathf.Deg2Rad;
-            _sprite.transform.rotation = Quaternion.Euler(0f, 0f, _rotation * Mathf.Rad2Deg);
+            _sprites.transform.rotation = Quaternion.Euler(0f, 0f, _rotation * Mathf.Rad2Deg);
 
 
             // activate key

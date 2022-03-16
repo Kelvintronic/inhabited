@@ -351,7 +351,7 @@ namespace GameEngine
             remotePlayer.Spawn(spawnPoint.x, spawnPoint.y);
 
             // create view object
-            var view = RemotePlayerView.Create(_remotePlayerViewPrefab, remotePlayer, _spriteArray[GetPlayerSpriteIndex(remotePlayer.player)]);
+            var view = RemotePlayerView.Create(_remotePlayerViewPrefab, remotePlayer, (PlayerColour)remotePlayer.player);
 
             // add to player manager for server updates
             _playerManager.AddPlayer(remotePlayer, view);
@@ -378,7 +378,7 @@ namespace GameEngine
             _ourPlayer.Spawn(spawnPoint.x, spawnPoint.y);
 
             // instantiate view
-            _ourPlayerView = ClientPlayerView.Create(this, _clientPlayerViewPrefab, _ourPlayer, _spriteArray[GetPlayerSpriteIndex(_ourPlayer.player)]);
+            _ourPlayerView = ClientPlayerView.Create(this, _clientPlayerViewPrefab, _ourPlayer, (PlayerColour)_ourPlayer.player);
 
             // add player and view to playermanager (for server updates)
             _playerManager.AddClientPlayer(_ourPlayer, _ourPlayerView);

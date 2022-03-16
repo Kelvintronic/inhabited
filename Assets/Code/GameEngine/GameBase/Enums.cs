@@ -6,6 +6,14 @@
         IsHostile
     }
 
+    public enum PlayerColour
+    {
+        Red,
+        Green,
+        Yellow,
+        Purple
+    }
+
     public enum ObjectType
     {
         // common to PlayerBagItem

@@ -17,6 +17,9 @@ namespace GameEngine
             _rotation = pjPacket.InitialPlayerState.Rotation;
         }
 
+        private bool _isMoving = false;
+        public bool IsMoving => _isMoving;
+
         /// <summary>
         /// Allows positioning of a player anywhere is world space
         /// i.e. bypasses lerp
@@ -45,6 +48,10 @@ namespace GameEngine
             float lerpTime = NetworkGeneral.SeqDiff(dataB.Tick, dataA.Tick)*LogicTimer.FixedDelta;
             float t = _timer / lerpTime;
             _position = WorldVector.Lerp(dataA.Position, dataB.Position, t);
+            if (dataA.Position == dataB.Position)
+                _isMoving = false;
+            else
+                _isMoving = true;
             _timer += delta;
             if (_timer > lerpTime)
             {
